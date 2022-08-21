@@ -1,8 +1,7 @@
 
 ## 框架
-    .Net 6
-  
-    Prism
+.Net 6
+Prism
   
 ## 注意
 
