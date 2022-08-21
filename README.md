@@ -49,6 +49,8 @@
   
 ## 声明
   此项目为学习 “HenJigg” 制作的练习作品，有做一些优化和修改；如有兴趣，可点击下方链接观看原视频学习。
-  https://www.bilibili.com/video/BV1nY411a7T8?vd_source=59db7e89fb76627915a3078680170d85
+  
+  视频连接：https://www.bilibili.com/video/BV1nY411a7T8?vd_source=59db7e89fb76627915a3078680170d85
+  
   视频项目源代码地址: https://github.com/HenJigg/MyToDoApp
 
