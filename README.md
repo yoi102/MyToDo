@@ -12,3 +12,6 @@
 ![image](https://user-images.githubusercontent.com/77535233/185774247-a8ad4d38-6513-440b-9b37-efc083a8c573.png)
 ![image](https://user-images.githubusercontent.com/77535233/185774287-d5e45192-403a-45e8-94ed-f62a9cec90ec.png)
 
+  3.如果此处报错，可将地址改为“../../../Images/user.jpg”。需要确定指向项目MyToDo中Images文件夹的图片。
+  ![image](https://user-images.githubusercontent.com/77535233/185774500-54f95580-863c-4e68-88ae-a2bd992144d7.png)
+
