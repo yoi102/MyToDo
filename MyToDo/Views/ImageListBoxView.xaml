@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="MyToDo.Views.ImageListBoxView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:MyToDo.Views"
+             xmlns:viewmodels="clr-namespace:MyToDo.ViewModels"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition  Height="auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <local:uclImageBox  DataContext="{Binding ImageBox}" />
+            <GridSplitter Grid.Column="1"
+                          Width="5"
+                          Background="Black"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Stretch" />
+            <local:uclImage Grid.Column="2"
+                            ImageSource="{Binding ImageBox.Image}" />
+
+        </Grid>
+        <!--<Button Content="cccc"
+                Grid.Row="2"
+                Command="{Binding AddCommand}" Panel.ZIndex="2"></Button>-->
+        <GridSplitter Grid.Row="1"
+                      Height="5"
+                      Background="Black"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Center" />
+        <ScrollViewer Grid.Row="2"
+                      VerticalScrollBarVisibility="Hidden">
+            <ItemsControl HorizontalAlignment="Center"
+                          ItemsSource="{Binding MyImages}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <md:TransitioningContent OpeningEffect="{md:TransitionEffect Kind=ExpandIn}">
+                            <Border CornerRadius="4"
+                                    Margin="8"
+                                    Width="220"
+                                    MinHeight="180"
+                                    MaxHeight="250"
+                                    Background="SkyBlue">
+                                <Grid>
+                                    <Grid Margin="8"
+                                          Panel.ZIndex="1">
+
+                                        <Button  Height="30"
+                                                 Width="30"
+                                                 Content="✕"
+                                                 Foreground="Black"
+                                                 HorizontalAlignment="Right"
+                                                 VerticalAlignment="Top"
+                                                 Panel.ZIndex="1"
+                                                 Style="{StaticResource MaterialDesignIconButton}" />
+                                        <Image Source="{Binding MyImage}"
+                                               Grid.Row="1" />
+
+                                    </Grid>
+                                    <Canvas ClipToBounds="True">
+                                        <Border Canvas.Top="10"
+                                                CornerRadius="20"
+                                                Canvas.Right="-50"
+                                                Width="120"
+                                                Height="120"
+                                                Background="#ffff"
+                                                Opacity="0.2" />
+                                        <Border Canvas.Top="80"
+                                                CornerRadius="20"
+                                                Canvas.Right="-30"
+                                                Width="120"
+                                                Height="120"
+                                                Background="#ffff"
+                                                Opacity="0.2" />
+
+                                    </Canvas>
+                                </Grid>
+
+                            </Border>
+
+                        </md:TransitioningContent>
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

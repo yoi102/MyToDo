@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="MyToDo.Views.Dialogs.AddMemoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:MyToDo.Views.Dialogs"
+             mc:Ignorable="d"
+             Width="450"
+             Height="280">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="备忘录"
+                   Padding="20,10"
+                   FontWeight="Bold"
+                   FontSize="20" />
+        <DockPanel Grid.Row="1"
+                   LastChildFill="False">
+
+            <TextBox Margin="20 0"
+                     md:HintAssist.Hint="请输入备忘录概要"
+                     FontWeight="Bold"
+                     Text="{Binding Model.Title}"
+                     FontSize="15"
+                     DockPanel.Dock="Top" />
+            <TextBox Margin="20 0"
+                     md:HintAssist.Hint="请输入备忘录内容"
+                     MinHeight="100"
+                     Text="{Binding Model.Content}"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     DockPanel.Dock="Top" />
+
+        </DockPanel>
+
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+
+            <Button Content="取消"
+                    Margin="0 0 10 0"
+                    Command="{Binding CancelCommand}"
+                    Style="{StaticResource MaterialDesignFlatDarkBgButton}" />
+            <Button Content="确定" 
+                    Command="{Binding SaveCommand}"
+                    />
+
+        </StackPanel>
+
+    </Grid>
+</UserControl>
