@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls.Primitives;
@@ -29,18 +30,25 @@ namespace MyToDo.ViewModels
         public IndexViewModel(IDialogHostService dialog, IContainerProvider provider) : base(provider)
         {
 
-
-
-            DispatcherTimer timer = new DispatcherTimer();
-            //设置每隔一秒触发
-            //TimeSpan--时间间隔
-            timer.Interval = TimeSpan.FromMilliseconds(100);
-            timer.Tick += (o, e) =>
+            Timer timer = new Timer((o) =>
             {
-
                 NowTime = DateTime.Now.ToString("yyyy 年 MM 月 dd 日 dddd   HH:mm:ss");
-            };
-            timer.Start();
+            });
+            timer.Change(0, 1000);
+
+
+
+
+            //DispatcherTimer timer = new DispatcherTimer();
+            ////设置每隔一秒触发
+            ////TimeSpan--时间间隔
+            //timer.Interval = TimeSpan.FromMilliseconds(100);
+            //timer.Tick += (o, e) =>
+            //{
+
+            //    NowTime = DateTime.Now.ToString("yyyy 年 MM 月 dd 日 dddd   HH:mm:ss");
+            //};
+            //timer.Start();
             this.dialog = dialog;
             this.toDoService = provider.Resolve<IToDoService>();
             this.memoServic = provider.Resolve<IMemoService>();

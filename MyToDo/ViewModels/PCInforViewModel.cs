@@ -52,7 +52,7 @@ namespace MyToDo.ViewModels
 
                 foreach (ManagementObject c in osClassInstances)
                 {
-                    SysContent += $"\rc[systemProperties.Name]: {c[systemProperties.Name]}";
+                    SysContent += $"\rc[systemProperties.Name]: {c[systemProperties.Name]}";//视乎就是Value
                     SysContent += $"\rName: {systemProperties.Name}";
                     SysContent += "\r";
                     SysContent += $"\rType: {systemProperties.Type}";

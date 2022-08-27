@@ -105,6 +105,7 @@ namespace MyToDo.ViewModels
             MenuBars.Add(new MenuBar() { IconKind = "Cog", Title = "设置", NameSpace = "SettingsView" });
             MenuBars.Add(new MenuBar() { IconKind = "Image", Title = "图", NameSpace = "ImageListBoxView" });
             MenuBars.Add(new MenuBar() { IconKind = "PC", Title = "PCInfor", NameSpace = "PCInforView" });
+            MenuBars.Add(new MenuBar() { IconKind = "Memory", Title = "MemoryInfor", NameSpace = "MemoryInforView" });
 
 
 
