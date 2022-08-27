@@ -11,6 +11,9 @@ using System.Windows.Media.Imaging;
 using MyToDo.Common.Models;
 using OpenCvSharp.WpfExtensions;
 using static System.Net.Mime.MediaTypeNames;
+using System.IO;
+using System.Drawing.Drawing2D;
+using System.Management;
 
 namespace MyToDo.ViewModels
 {
@@ -24,10 +27,14 @@ namespace MyToDo.ViewModels
 
             ImageBox = new uclImageBoxModel();
 
-            using Mat mat = new Mat("Images/1.jpg");//MyToDo/Images/1.jpg
+            using Mat mat = new Mat(Path.Combine(GetImagesDirectory(), "1.jpg"));//MyToDo/Images/1.jpg
             //Cv2.CvtColor(mat, mat, ColorConversionCodes.RGB2GRAY);
             ImageBox.Image = mat.ToBitmapSource();
             ImageBox.Image = mat.ToWriteableBitmap();
+            mat.Dispose();
+
+
+
 
 
         }
@@ -59,23 +66,57 @@ namespace MyToDo.ViewModels
         }
 
 
+        string GetImagesDirectory()
+        {
+            string director = null;
+
+            string currentDirector = "./";
+
+
+            for (int i = 0; i < 10; i++)//十次之内，获取Images的绝对路径，否则完蛋。
+            {
+
+                var path = Directory.GetParent(currentDirector);
+
+                var directories = path.GetDirectories();
+                foreach (var o in directories)
+                {
+                    if (o.Name == "Images")
+                    {
+                        director = o.FullName;
+                    }
+                }
+                if (director != null) break;
+                currentDirector = path.FullName;
+            }
+            return director;
+        }
 
 
         void CreateImagesList()
         {
+
+
+            //ManagementClass class2 = new ManagementClass("Win32_Processor");
+            //foreach (ManagementObject obj2 in class2.GetInstances())
+            //{
+            //    var cpuInfo = obj2.Properties["ProcessorId"].Value.ToString();
+            //}
+
+            string path = GetImagesDirectory();
+
             for (int i = 0; i < 51; i++)
             {
-                Mat mat = new Mat("Images/user.jpg");//MyToDo/Images/user.jpg
-
+                Mat mat = new Mat(Path.Combine(path, "user.jpg"));//MyToDo/Images/user.jpg
                 Cv2.CvtColor(mat, mat, ColorConversionCodes.RGB2GRAY);
                 Cv2.Threshold(mat, mat, 255 - i * 5, 255, ThresholdTypes.Binary);
-
                 MyImages.Add(new ListImage() { MyImage = mat.ToBitmapSource() });
                 mat.Dispose();
+
             }
 
         }
-    
+
 
 
 
