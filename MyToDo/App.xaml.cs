@@ -66,6 +66,7 @@ namespace MyToDo
             containerRegistry.RegisterForNavigation<MemoView, MemoViewModel>();
             containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
             containerRegistry.RegisterForNavigation<ImageListBoxView, ImageListBoxViewModel>();
+            containerRegistry.RegisterForNavigation<PCInforView, PCInforViewModel>();
 
             containerRegistry.RegisterForNavigation<AddToDoView, AddToDoViewModel>();
             containerRegistry.RegisterForNavigation<AddMemoView, AddMemoViewModel>();

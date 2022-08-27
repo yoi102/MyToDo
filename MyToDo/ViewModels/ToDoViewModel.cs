@@ -13,8 +13,10 @@ using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Management;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace MyToDo.ViewModels
@@ -317,7 +319,138 @@ namespace MyToDo.ViewModels
         public DelegateCommand SelectionChangedCommand => new DelegateCommand(() =>
         {
 
+
+
+        //// Get the WMI class
+        //ManagementClass osClass =
+        //    new ManagementClass("Win32_OperatingSystem");
+
+        //osClass.Options.UseAmendedQualifiers = true;
+
+        //// Get the Properties in the class
+        //PropertyDataCollection properties =
+        //    osClass.Properties;
+
+        //// display the Property names
+        //Console.WriteLine("Property Name: ");
+        //    foreach (PropertyData property in properties)
+        //    {
+        //        Console.WriteLine(
+        //            "---------------------------------------");
+        //        Console.WriteLine(property.Name);
+        //        Console.WriteLine("Description: " +
+        //            property.Qualifiers["Description"].Value);
+        //        Console.WriteLine();
+
+        //        Console.WriteLine("Type: ");
+        //        Console.WriteLine(property.Type);
+
+        //        Console.WriteLine();
+
+        //        Console.WriteLine("Qualifiers: ");
+        //        foreach (QualifierData q in
+        //            property.Qualifiers)
+        //        {
+        //            Console.WriteLine(q.Name);
+        //        }
+        //        Console.WriteLine();
+
+        //        foreach (ManagementObject c in osClass.GetInstances())
+        //        {
+        //            Console.WriteLine("Value: ");
+        //            Console.WriteLine(
+        //                c.Properties[property.Name.ToString()].Value);
+
+        //            Console.WriteLine();
+        //        }
+
+        //    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            ManagementClass mcMemory = new ManagementClass("Win32_OperatingSystem");
+            ManagementObjectCollection mocMemory = mcMemory.GetInstances();
+            var s = mcMemory.Properties;
+
+
+
+
+
+            foreach (ManagementObject mo in mocMemory)
+            {
+                var v = mo.Properties["TotalVisibleMemorySize"].Value;
+                var sv = mo.Properties["VisibleMemorySize"].Value;
+
+
+                if (mo.Properties["TotalVisibleMemorySize"].Value != null)
+                {
+                    MessageBox.Show(mo.Properties["TotalVisibleMemorySize"].Value.ToString());
+                }
+            }
+
+
+
+            //// Get the WMI class
+            //ManagementClass processClass =
+            //    new ManagementClass("Win32_Process");
+            //processClass.Options.UseAmendedQualifiers = true;
+
+            //// Get the properties in the class
+            //PropertyDataCollection properties =
+            //    processClass.Properties;
+
+            //// display the properties
+            //Console.WriteLine("Win32_Process Property Names: ");
+            //    foreach (PropertyData property in properties)
+            //    {
+            //        Console.WriteLine(property.Name);
+
+            //        foreach (QualifierData q in property.Qualifiers)
+            //        {
+            //            if (q.Name.Equals("Description"))
+            //            {
+            //                Console.WriteLine(
+            //                    processClass.GetPropertyQualifierValue(
+            //                    property.Name, q.Name));
+            //            }
+            //        }
+            //        Console.WriteLine();
+            //    }
+
+
+
+
+
+
+
+
+
+
+            //ManagementClass class2 = new ManagementClass("Win32_Processor");
+            //foreach (ManagementObject obj2 in class2.GetInstances())
+            //{
+            //    var cpuInfo = obj2.Properties["ProcessorId"].Value.ToString();
+            //}
+
+
             Query();
+
+         
+
 
         });
 

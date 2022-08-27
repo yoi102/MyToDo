@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="MyToDo.Views.PCInforView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:local="clr-namespace:MyToDo.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+       
+            <Button Content="test"
+                    Command="{Binding TestCommand}" />
+            <Grid Grid.Row="1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <ScrollViewer>
+                    <TextBox Text="{Binding SysContent}"
+                             IsReadOnly="true"
+                             TextWrapping="Wrap" />
+
+                </ScrollViewer>
+                <ScrollViewer Grid.Column="1">
+                    <TextBox Text="{Binding Content}"
+                             IsReadOnly="true"
+                             TextWrapping="Wrap" />
+
+                </ScrollViewer>
+
+            </Grid>
+    </Grid>
+</UserControl>

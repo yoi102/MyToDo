@@ -14,6 +14,7 @@ using static System.Net.Mime.MediaTypeNames;
 using System.IO;
 using System.Drawing.Drawing2D;
 using System.Management;
+using System.Windows;
 
 namespace MyToDo.ViewModels
 {
@@ -96,12 +97,8 @@ namespace MyToDo.ViewModels
         void CreateImagesList()
         {
 
-
-            //ManagementClass class2 = new ManagementClass("Win32_Processor");
-            //foreach (ManagementObject obj2 in class2.GetInstances())
-            //{
-            //    var cpuInfo = obj2.Properties["ProcessorId"].Value.ToString();
-            //}
+         
+          
 
             string path = GetImagesDirectory();
 
