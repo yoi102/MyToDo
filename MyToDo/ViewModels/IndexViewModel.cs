@@ -34,7 +34,7 @@ namespace MyToDo.ViewModels
             {
                 NowTime = DateTime.Now.ToString("yyyy 年 MM 月 dd 日 dddd   HH:mm:ss");
             });
-            timer.Change(0, 1000);
+            timer.Change(0, 500);
 
 
 

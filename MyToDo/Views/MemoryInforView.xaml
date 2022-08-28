@@ -15,10 +15,15 @@
             <RowDefinition Height="auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock Text="占用内存： --好丑" FontSize="20"/>
+        <StackPanel>
+            <TextBlock Text="占用内存： --好丑"
+                       FontSize="20" />
+            <TextBlock Text="{Binding Text}" />
+        </StackPanel>
         <lvc:CartesianChart Grid.Row="1"
-                            
-                            Series="{Binding MemorySeries}"></lvc:CartesianChart>
+                            ZoomMode="None"
+                            Series="{Binding MemorySeries}">
+        </lvc:CartesianChart>
 
     </Grid>
 </UserControl>

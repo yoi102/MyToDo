@@ -10,6 +10,7 @@ using DryIoc;
 using MyToDo.Common;
 using MyToDo.Views.Dialogs;
 using MyToDo.ViewModels.Dialogs;
+using Hardware.Info;
 
 namespace MyToDo
 {
@@ -78,6 +79,8 @@ namespace MyToDo
             containerRegistry.Register<IToDoService, ToDoService>();
             containerRegistry.Register<IMemoService, MemoService>();
             containerRegistry.Register<ILoginService, LoginService>();
+
+            containerRegistry.Register<IHardwareInfo, HardwareInfo>();
             containerRegistry.GetContainer().Register<HttpRestClient>(made: Parameters.Of.Type<string>(serviceKey: "webUrl"));
 
             containerRegistry.GetContainer().RegisterInstance(@"https://localhost:7211/", serviceKey: "webUrl");

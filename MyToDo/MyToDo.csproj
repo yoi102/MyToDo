@@ -20,6 +20,8 @@
     <Resource Include="Images\5.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Hardware.Info" Version="10.0.1" />
+    <PackageReference Include="LibreHardwareMonitorLib" Version="0.9.1-pre140" />
     <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-beta.361" />
     <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
     <PackageReference Include="OpenCvSharp4.Windows" Version="4.6.0.20220608" />

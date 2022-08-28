@@ -1,4 +1,5 @@
-﻿using LiveChartsCore;
+﻿using Hardware.Info;
+using LiveChartsCore;
 using LiveChartsCore.Defaults;
 using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
@@ -14,12 +15,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Threading;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MyToDo.ViewModels
 {
     public class MemoryInforViewModel : BindableBase
     {
-        public MemoryInforViewModel()
+        public MemoryInforViewModel(IHardwareInfo hardwareInfo)
         {
 
             _observableValues = new ObservableCollection<ObservableValue>();
@@ -38,17 +40,14 @@ namespace MyToDo.ViewModels
 
             Timer timer = new Timer(GetMemoRyData);
             timer.Change(0, 1000);
-
-
-
+            this.hardwareInfo = hardwareInfo;
         }
 
 
 
 
         private readonly ObservableCollection<ObservableValue> _observableValues;
-
-
+        private readonly IHardwareInfo hardwareInfo;
         private ObservableCollection<ISeries> _MemorySeries;
 
         public ObservableCollection<ISeries> MemorySeries
@@ -56,15 +55,22 @@ namespace MyToDo.ViewModels
             get { return _MemorySeries; }
             set { _MemorySeries = value; RaisePropertyChanged(); }
         }
+        private string _Text;
 
+        public string Text
+        {
+            get { return _Text; }
+            set { _Text = value; RaisePropertyChanged(); }
+        }
 
+        
 
 
         void GetMemoRyData(object o)
         {
+            //WMI 
             ManagementClass osClass = new ManagementClass("Win32_OperatingSystem");
             var osClassInstances = osClass.GetInstances();
-
             foreach (var item in osClassInstances)
             {
                 var FreeMemory = (double)(ulong)item.Properties["FreePhysicalMemory"].Value;
@@ -82,6 +88,10 @@ namespace MyToDo.ViewModels
             }
             osClass.Dispose();
             osClassInstances.Dispose();
+            //第三方api
+            hardwareInfo.RefreshMemoryStatus();
+            Text = ((double)(hardwareInfo.MemoryStatus.TotalPhysical - hardwareInfo.MemoryStatus.AvailablePhysical) / 1024 / 1024 / 1024).ToString();
+            
         }
 
 
