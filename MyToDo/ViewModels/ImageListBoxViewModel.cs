@@ -29,6 +29,7 @@ namespace MyToDo.ViewModels
             ImageBox = new uclImageBoxModel();
 
             using Mat mat = new Mat(Path.Combine(GetImagesDirectory(), "1.jpg"));//MyToDo/Images/1.jpg
+            //using Mat mat = new Mat("~/Images/1.jpg");//MyToDo/Images/1.jpg
             //Cv2.CvtColor(mat, mat, ColorConversionCodes.RGB2GRAY);
             ImageBox.Image = mat.ToBitmapSource();
             ImageBox.Image = mat.ToWriteableBitmap();

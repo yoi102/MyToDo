@@ -79,8 +79,7 @@ namespace MyToDo
             containerRegistry.Register<IToDoService, ToDoService>();
             containerRegistry.Register<IMemoService, MemoService>();
             containerRegistry.Register<ILoginService, LoginService>();
-
-            containerRegistry.Register<IHardwareInfo, HardwareInfo>();
+            containerRegistry.RegisterScoped<IHardwareInfo, HardwareInfo>();//有三种注册方式
             containerRegistry.GetContainer().Register<HttpRestClient>(made: Parameters.Of.Type<string>(serviceKey: "webUrl"));
 
             containerRegistry.GetContainer().RegisterInstance(@"https://localhost:7211/", serviceKey: "webUrl");
