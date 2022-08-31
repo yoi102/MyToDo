@@ -6,24 +6,25 @@
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
              xmlns:local="clr-namespace:MyToDo.Views"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:viewmodels="clr-namespace:MyToDo.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:MemoryInforViewModel}"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
+            <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel>
-            <TextBlock Text="占用内存： --好丑"
-                       FontSize="20" />
-            <TextBlock Text="{Binding Text}" />
-        </StackPanel>
+     
+        <lvc:CartesianChart Grid.Row="0"
+                            ZoomMode="None"
+                            Series="{Binding PhysicalUsedMemorySeries}">
+        </lvc:CartesianChart>
         <lvc:CartesianChart Grid.Row="1"
                             ZoomMode="None"
-                            Series="{Binding MemorySeries}">
+                            Series="{Binding VirtualUsedMemorySeries}">
         </lvc:CartesianChart>
-
     </Grid>
 </UserControl>

@@ -319,58 +319,55 @@ namespace MyToDo.ViewModels
         public DelegateCommand SelectionChangedCommand => new DelegateCommand(() =>
         {
 
-
-
-        //// Get the WMI class
-        //ManagementClass osClass =
-        //    new ManagementClass("Win32_OperatingSystem");
-
-        //osClass.Options.UseAmendedQualifiers = true;
-
-        //// Get the Properties in the class
-        //PropertyDataCollection properties =
-        //    osClass.Properties;
-
-        //// display the Property names
-        //Console.WriteLine("Property Name: ");
-        //    foreach (PropertyData property in properties)
-        //    {
-        //        Console.WriteLine(
-        //            "---------------------------------------");
-        //        Console.WriteLine(property.Name);
-        //        Console.WriteLine("Description: " +
-        //            property.Qualifiers["Description"].Value);
-        //        Console.WriteLine();
-
-        //        Console.WriteLine("Type: ");
-        //        Console.WriteLine(property.Type);
-
-        //        Console.WriteLine();
-
-        //        Console.WriteLine("Qualifiers: ");
-        //        foreach (QualifierData q in
-        //            property.Qualifiers)
-        //        {
-        //            Console.WriteLine(q.Name);
-        //        }
-        //        Console.WriteLine();
-
-        //        foreach (ManagementObject c in osClass.GetInstances())
-        //        {
-        //            Console.WriteLine("Value: ");
-        //            Console.WriteLine(
-        //                c.Properties[property.Name.ToString()].Value);
-
-        //            Console.WriteLine();
-        //        }
-
-        //    }
+            Query();
 
 
 
 
+            //// Get the WMI class
+            //ManagementClass osClass =
+            //    new ManagementClass("Win32_OperatingSystem");
 
+            //osClass.Options.UseAmendedQualifiers = true;
 
+            //// Get the Properties in the class
+            //PropertyDataCollection properties =
+            //    osClass.Properties;
+
+            //// display the Property names
+            //Console.WriteLine("Property Name: ");
+            //    foreach (PropertyData property in properties)
+            //    {
+            //        Console.WriteLine(
+            //            "---------------------------------------");
+            //        Console.WriteLine(property.Name);
+            //        Console.WriteLine("Description: " +
+            //            property.Qualifiers["Description"].Value);
+            //        Console.WriteLine();
+
+            //        Console.WriteLine("Type: ");
+            //        Console.WriteLine(property.Type);
+
+            //        Console.WriteLine();
+
+            //        Console.WriteLine("Qualifiers: ");
+            //        foreach (QualifierData q in
+            //            property.Qualifiers)
+            //        {
+            //            Console.WriteLine(q.Name);
+            //        }
+            //        Console.WriteLine();
+
+            //        foreach (ManagementObject c in osClass.GetInstances())
+            //        {
+            //            Console.WriteLine("Value: ");
+            //            Console.WriteLine(
+            //                c.Properties[property.Name.ToString()].Value);
+
+            //            Console.WriteLine();
+            //        }
+
+            //    }
 
 
 
@@ -382,25 +379,31 @@ namespace MyToDo.ViewModels
 
 
 
-            ManagementClass mcMemory = new ManagementClass("Win32_OperatingSystem");
-            ManagementObjectCollection mocMemory = mcMemory.GetInstances();
-            var s = mcMemory.Properties;
 
 
 
 
 
-            foreach (ManagementObject mo in mocMemory)
-            {
-                var v = mo.Properties["TotalVisibleMemorySize"].Value;
-                var sv = mo.Properties["VisibleMemorySize"].Value;
+
+            //ManagementClass mcMemory = new ManagementClass("Win32_OperatingSystem");
+            //ManagementObjectCollection mocMemory = mcMemory.GetInstances();
+            //var s = mcMemory.Properties;
 
 
-                if (mo.Properties["TotalVisibleMemorySize"].Value != null)
-                {
-                    MessageBox.Show(mo.Properties["TotalVisibleMemorySize"].Value.ToString());
-                }
-            }
+
+
+
+            //foreach (ManagementObject mo in mocMemory)
+            //{
+            //    var v = mo.Properties["TotalVisibleMemorySize"].Value;
+            //    var sv = mo.Properties["VisibleMemorySize"].Value;
+
+
+            //    if (mo.Properties["TotalVisibleMemorySize"].Value != null)
+            //    {
+            //        MessageBox.Show(mo.Properties["TotalVisibleMemorySize"].Value.ToString());
+            //    }
+            //}
 
 
 
@@ -447,9 +450,8 @@ namespace MyToDo.ViewModels
             //}
 
 
-            Query();
 
-         
+
 
 
         });

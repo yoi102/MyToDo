@@ -24,15 +24,27 @@ namespace MyToDo.ViewModels
         public MemoryInforViewModel(IHardwareInfo hardwareInfo)
         {
 
-            _observableValues = new ObservableCollection<ObservableValue>();
+            _physicalUsedMemoryValues = new ObservableCollection<ObservableValue>();
+            _virtualUsedMemoryValues = new ObservableCollection<ObservableValue>();
 
-            MemorySeries = new ObservableCollection<ISeries>
+            PhysicalUsedMemorySeries = new ObservableCollection<ISeries>
             {
                 new LineSeries<ObservableValue>
                 {
-                Values = _observableValues,
+                Values = _physicalUsedMemoryValues,
                 Fill = new SolidColorPaint(new SKColor(0, 255, 255, 90)),
-                Name = "UsedMemory",
+                Name = "PhysicalUsedMemory",
+                LineSmoothness = 0.2
+
+                }
+            };
+            VirtualUsedMemorySeries = new ObservableCollection<ISeries>
+            {
+                new LineSeries<ObservableValue>
+                {
+                Values = _virtualUsedMemoryValues,
+                Fill = new SolidColorPaint(new SKColor(0, 255, 255, 90)),
+                Name = "VirtualUsedMemory",
                 LineSmoothness = 0.2
 
                 }
@@ -46,24 +58,31 @@ namespace MyToDo.ViewModels
 
 
 
-        private readonly ObservableCollection<ObservableValue> _observableValues;
+        private readonly ObservableCollection<ObservableValue> _physicalUsedMemoryValues;
+        private readonly ObservableCollection<ObservableValue> _virtualUsedMemoryValues;
         private readonly IHardwareInfo hardwareInfo;
-        private ObservableCollection<ISeries> _MemorySeries;
+        private ObservableCollection<ISeries> _PhysicalUsedMemorySeries;
+        private ObservableCollection<ISeries> _VirtualUsedMemorySeries;
 
-        public ObservableCollection<ISeries> MemorySeries
+        public ObservableCollection<ISeries> PhysicalUsedMemorySeries
         {
-            get { return _MemorySeries; }
-            set { _MemorySeries = value; RaisePropertyChanged(); }
+            get { return _PhysicalUsedMemorySeries; }
+            set { _PhysicalUsedMemorySeries = value; RaisePropertyChanged(); }
         }
-        private string _Text;
-
-        public string Text
+        public ObservableCollection<ISeries> VirtualUsedMemorySeries
         {
-            get { return _Text; }
-            set { _Text = value; RaisePropertyChanged(); }
+            get { return _VirtualUsedMemorySeries; }
+            set { _VirtualUsedMemorySeries = value; RaisePropertyChanged(); }
         }
+        //private string _Text;
 
-        
+        //public string Text
+        //{
+        //    get { return _Text; }
+        //    set { _Text = value; RaisePropertyChanged(); }
+        //}
+
+
 
 
         void GetMemoRyData(object o)
@@ -79,19 +98,27 @@ namespace MyToDo.ViewModels
                 double value = (totalMemory - FreeMemory) / 1024 / 1024;
                 value = Math.Round(value * 100) / 100;
 
-                _observableValues.Add(new ObservableValue(value));
+                _physicalUsedMemoryValues.Add(new ObservableValue(value));
 
-                if (_observableValues.Count > 20)
+                if (_physicalUsedMemoryValues.Count > 20)
                 {
-                    _observableValues.RemoveAt(0);
+                    _physicalUsedMemoryValues.RemoveAt(0);
                 }
             }
             osClass.Dispose();
             osClassInstances.Dispose();
             //第三方api
             hardwareInfo.RefreshMemoryStatus();
-            Text = ((double)(hardwareInfo.MemoryStatus.TotalPhysical - hardwareInfo.MemoryStatus.AvailablePhysical) / 1024 / 1024 / 1024).ToString();
-            
+            //Text = ((double)(hardwareInfo.MemoryStatus.TotalPhysical - hardwareInfo.MemoryStatus.AvailablePhysical) / 1024 / 1024 / 1024).ToString();
+
+
+
+            _virtualUsedMemoryValues.Add(new ObservableValue(Math.Round(((double)(hardwareInfo.MemoryStatus.TotalVirtual - hardwareInfo.MemoryStatus.AvailableVirtual) / 1024 / 1024 / 1024) * 100) / 100));
+
+            if (_virtualUsedMemoryValues.Count > 20)
+            {
+                _virtualUsedMemoryValues.RemoveAt(0);
+            }
         }
 
 
