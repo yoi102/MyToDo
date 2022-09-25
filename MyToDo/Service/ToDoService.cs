@@ -1,10 +1,7 @@
 ﻿using MyToDo.Shared;
 using MyToDo.Shared.Dtos;
 using MyToDo.Shared.Parameters;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MyToDo.Service
@@ -22,20 +19,17 @@ namespace MyToDo.Service
         {
             BaseRequest request = new BaseRequest();
             request.Method = RestSharp.Method.Get;
-            request.Route = $"api/ToDo/GetSearch?status={parameter.Status} "+
+            request.Route = $"api/ToDo/GetSearch?status={parameter.Status} " +
                 $"&search={parameter.Search}";
             return await client.ExecuteAsync<List<ToDoDto>>(request);
         }
 
         public async Task<ApiResponse<SummaryDto>> SummaryAsync()
         {
-
             BaseRequest request = new BaseRequest();
             request.Method = RestSharp.Method.Get;
             request.Route = $"api/ToDo/Summary";
             return await client.ExecuteAsync<SummaryDto>(request);
-
-
         }
     }
 }

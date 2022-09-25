@@ -6,6 +6,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:cv ="clr-namespace:MyToDo.Converters"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:MyToDo.Views"
              mc:Ignorable="d"
              d:DesignHeight="450"
@@ -21,7 +22,7 @@
         </Grid.RowDefinitions>
         <TextBlock FontSize="22"
                    Margin="15 10"
-                   Text="{Binding NowTime}" />
+                   Text="{Binding Source={x:Static sys:DateTime.Now},  Mode=OneWay, StringFormat='yyyy 年 MM 月 dd 日 dddd   HH:mm:ss'}" />
 
         <ItemsControl Grid.Row="1"
                       ItemsSource="{Binding TaskBars}">
@@ -53,7 +54,6 @@
                                                                    BlurRadius="50" />
                                             </Setter.Value>
                                         </Setter>
-
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -86,11 +86,9 @@
                                         Height="120"
                                         Background="#ffff"
                                         Opacity="0.2" />
-
                             </Canvas>
                         </Grid>
                     </Border>
-
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
@@ -105,7 +103,6 @@
                     CornerRadius="5"
                     Opacity="0.2"
                     Background="Gray">
-
             </Border>
 
             <DockPanel Margin="10 0">
@@ -161,10 +158,8 @@
                                                   IsChecked="{Binding Status,Converter={StaticResource intToBool}}"
                                                   CommandParameter="{Binding}"
                                                   Command="{Binding DataContext.ToDoCompltedCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=ItemsControl}}">
-                                 
                                     </ToggleButton>
 
-                                  
                                         <StackPanel>
 
                                             <TextBlock   Text="{Binding Title}"
@@ -178,9 +173,7 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-
                 </DockPanel>
-
             </DockPanel>
 
             <Border Grid.Column="1"
@@ -222,7 +215,7 @@
 
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                              
+
                                     <StackPanel MaxHeight="80">
                                         <TextBlock   Text="{Binding Title}"
                                                      FontSize="16"
@@ -235,10 +228,7 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </DockPanel>
-
             </DockPanel>
-
         </Grid>
-
     </Grid>
 </UserControl>

@@ -78,7 +78,6 @@
                                     <i:EventTrigger EventName="SelectionChanged">
                                         <i:InvokeCommandAction Command="{Binding NavigateCommand }"
                                                                CommandParameter="{Binding Path=SelectedItem , RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=ListBox}}" />
-
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                                 <ListBox.ItemTemplate>
@@ -93,14 +92,11 @@
                                                        Text="{Binding Title}"
                                                        HorizontalAlignment="Center"
                                                        VerticalAlignment="Center" />
-
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
-
                             </ListBox>
                         </StackPanel>
-
                     </DockPanel>
                 </materialDesign:DrawerHost.LeftDrawerContent>
 
@@ -145,7 +141,6 @@
                                         Content="个人中心" />-->
                                         <Button Command="{Binding LoginOutCommand}"
                                                 Content="注销" />
-
                                     </StackPanel>
                                 </materialDesign:PopupBox>
 
@@ -183,7 +178,6 @@
                                         Style="{StaticResource MaterialDesignToolButton}"
                                         Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"
                                         materialDesign:RippleAssist.Feedback="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Converter={StaticResource BrushRoundConverter}}" />
-
                             </StackPanel>
                             <Border x:Name="borderZone"
                                     Background="Transparent"
@@ -195,9 +189,7 @@
                                            AutomationProperties.Name="Material Design In XAML Toolkit"
                                            Text="ToDo？" />
                             </Border>
-
                         </Grid>
-
                     </materialDesign:ColorZone>
 
                     <Grid Grid.Row="1">
@@ -207,10 +199,8 @@
                                                  Panel.ZIndex="1"
                                                  MessageQueue="{materialDesign:MessageQueue}" />
                         <ContentControl prism:RegionManager.RegionName="{x:Static ext:PrismManager.MainViewRegionName}" />
-
                     </Grid>
                 </Grid>
-
             </materialDesign:DrawerHost>
         </materialDesign:DialogHost>
     </Grid>

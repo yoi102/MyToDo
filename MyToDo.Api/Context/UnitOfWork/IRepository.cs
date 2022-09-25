@@ -6,16 +6,16 @@
 
 namespace MyToDo.Api.Context.UnitOfWork
 {
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.ChangeTracking;
+    using Microsoft.EntityFrameworkCore.Query;
+    using MyToDo.Shared;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.EntityFrameworkCore.Query;
-    using Microsoft.EntityFrameworkCore.ChangeTracking;
-    using Microsoft.EntityFrameworkCore;
-    using MyToDo.Shared;
 
     /// <summary>
     /// Defines the interfaces for generic repository.

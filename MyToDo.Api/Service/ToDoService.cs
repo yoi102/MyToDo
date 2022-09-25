@@ -1,10 +1,9 @@
-﻿using MyToDo.Shared.Dtos;
+﻿using AutoMapper;
 using MyToDo.Api.Context;
-using MyToDo.Shared.Parameters;
 using MyToDo.Api.Context.UnitOfWork;
-using System.Reflection.Metadata;
+using MyToDo.Shared.Dtos;
+using MyToDo.Shared.Parameters;
 using System.Collections.ObjectModel;
-using AutoMapper;
 
 namespace MyToDo.Api.Service
 {

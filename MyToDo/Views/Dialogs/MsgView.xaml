@@ -36,8 +36,6 @@
                     Style="{StaticResource MaterialDesignFlatDarkBgButton}" />
             <Button Content="确定"
                     Command="{Binding SaveCommand}" />
-
         </StackPanel>
-
     </Grid>
 </UserControl>

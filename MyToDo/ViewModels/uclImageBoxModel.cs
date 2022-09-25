@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Prism;
+﻿using OpenCvSharp;
 using OpenCvSharp.WpfExtensions;
-using System.Windows.Media.Imaging;
-using Prism.Commands;
-using System.Windows.Input;
 using System.Windows;
-using System.Windows.Media;
 using System.Windows.Controls;
-using OpenCvSharp;
-using static OpenCvSharp.Mat;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Point = System.Windows.Point;
 
 namespace MyToDo.ViewModels
@@ -22,24 +14,19 @@ namespace MyToDo.ViewModels
     /// </summary>
     public class uclImageBoxModel : BindableBase
     {
-
-
-
         public uclImageBoxModel()
         {
-         
         }
+
         public uclImageBoxModel(BitmapSource image)
         {
             _Image = image;
         }
 
-
-
         #region Properties
 
-
         private BitmapSource _Image;
+
         public BitmapSource Image
         {
             get { return _Image; }
@@ -61,7 +48,6 @@ namespace MyToDo.ViewModels
                             _ImageDatab = vecDs;
                             _ImageData3b = null;
                         }
-
                     }
 
                     _Image = value;
@@ -84,6 +70,7 @@ namespace MyToDo.ViewModels
         }
 
         private string _StringY;
+
         public string StringY
         {
             get { return _StringY; }
@@ -91,53 +78,34 @@ namespace MyToDo.ViewModels
         }
 
         private string _R;
+
         public string R
         {
             get { return _R; }
             set { _R = value; RaisePropertyChanged(); }
         }
+
         private string _G;
+
         public string G
         {
             get { return _G; }
             set { _G = value; RaisePropertyChanged(); }
         }
+
         private string _B;
+
         public string B
         {
             get { return _B; }
             set { _B = value; RaisePropertyChanged(); }
         }
 
+        #endregion Properties
 
-
-
-
-        #endregion
-
-
-
-        #region Methods
-
-
-
-        #endregion
-
-
-
-
-
-        #region Commands
-
-
-
-
-        #endregion
 
 
         #region Events
-
-
 
         /// <summary>
         /// 图片按下事件，获取中建按下时刻的位置，为后续拖动提供坐标
@@ -146,10 +114,8 @@ namespace MyToDo.ViewModels
         /// <param name="e"></param>
         public void ImageMouseDown(object sender, MouseButtonEventArgs e)
         {
-
             if (e.MiddleButton == MouseButtonState.Pressed)
                 _MiddleButtonClickedPosition = e.GetPosition((IInputElement)e.Source);
-
         }
 
         private Point _MiddleButtonClickedPosition;//记录中键点击的位置。。。。。中间拖拉移动
@@ -169,7 +135,6 @@ namespace MyToDo.ViewModels
 
             double xRatio = Image.Width / imageControl.ActualWidth;
             double yRatio = Image.Height / imageControl.ActualHeight;
-
 
             _X = (float)(x * xRatio);
             _Y = (float)(y * yRatio);
@@ -191,7 +156,6 @@ namespace MyToDo.ViewModels
                 R = _ImageDatab[(int)_Y, (int)_X].ToString("000");
             }
 
-
             //当中键按下，移动图片
             if (e.MiddleButton == MouseButtonState.Pressed)
             {
@@ -201,11 +165,9 @@ namespace MyToDo.ViewModels
 
                 ttf.X += cursorPosition.X - _MiddleButtonClickedPosition.X;
                 ttf.Y += cursorPosition.Y - _MiddleButtonClickedPosition.Y;
-
             }
-
-
         }
+
         /// <summary>
         /// 图片滚轮缩放事件
         /// </summary>
@@ -213,7 +175,6 @@ namespace MyToDo.ViewModels
         /// <param name="e"></param>
         public void ImageMouseWheel(object sender, MouseWheelEventArgs e)
         {
-
             Image sf = sender as Image;
             var group = sf.RenderTransform as TransformGroup;
             var sc = group.Children[0] as ScaleTransform;//对应Xaml位置    这样搞，放大缩小有点奇怪
@@ -232,15 +193,8 @@ namespace MyToDo.ViewModels
                     sc.ScaleX -= 0.02;
                     sc.ScaleY -= 0.02;
                 }
-
             }
-
-
-
         }
-
-
-
 
         /// <summary>
         /// 图片还原
@@ -256,17 +210,8 @@ namespace MyToDo.ViewModels
             var group = im.RenderTransform as TransformGroup;
             group.Children[0] = new ScaleTransform();
             group.Children[1] = new TranslateTransform();
-
-
-
         }
 
-
-
-        #endregion
-
-
-
-
+        #endregion Events
     }
 }

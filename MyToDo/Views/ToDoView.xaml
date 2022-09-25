@@ -16,7 +16,6 @@
     <UserControl.Resources>
 
         <cv:IntToVisibilityConveter x:Key="IntToVisibility" />
-
     </UserControl.Resources>
 
     <md:DialogHost>
@@ -40,7 +39,6 @@
                             <ComboBoxItem  Content="待办" />
                             <ComboBoxItem Content="已完成" />
                         </ComboBox>
-
                     </StackPanel>
                     <TextBox Margin="20 10"
                              md:HintAssist.Hint="请输入待办概要"
@@ -56,9 +54,7 @@
                             Command="{Binding ExecuteCommand}"
                             CommandParameter="保存"
                             DockPanel.Dock="Top" />
-
                 </DockPanel>
-
             </md:DrawerHost.RightDrawerContent>
 
             <Grid>
@@ -134,7 +130,6 @@
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
-
                                         </Border.Style>
                                         <Grid>
                                             <Grid Margin="8"
@@ -156,7 +151,6 @@
                                                     <Button  Content="删除"
                                                              CommandParameter="{Binding}"
                                                              Command="{Binding DataContext.DeleteCommand,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=ItemsControl} }" />
-                                             
                                                 </md:PopupBox>
 
                                                 <TextBlock Text="{Binding Title}"
@@ -164,7 +158,6 @@
                                                            FontWeight="Bold" />
                                                 <TextBlock Text="{Binding Content}"
                                                            Grid.Row="1" />
-
                                             </Grid>
                                             <Canvas ClipToBounds="True">
                                                 <Border Canvas.Top="10"
@@ -181,19 +174,13 @@
                                                         Height="120"
                                                         Background="#ffff"
                                                         Opacity="0.2" />
-
                                             </Canvas>
                                         </Grid>
-
                                     </Border>
-
                                 </md:TransitioningContent>
-
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
-
                     </ItemsControl>
-
                 </ScrollViewer>
 
                 <StackPanel Grid.Row=" 1"
@@ -206,11 +193,7 @@
                                Margin="0 10"
                                HorizontalAlignment="Center" />
                 </StackPanel>
-
             </Grid>
-
         </md:DrawerHost>
-
     </md:DialogHost>
-
 </UserControl>

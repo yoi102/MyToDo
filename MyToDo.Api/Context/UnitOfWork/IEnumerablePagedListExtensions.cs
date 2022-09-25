@@ -2,8 +2,6 @@
 
 //using Arch.EntityFrameworkCore.UnitOfWork.Collections;
 using MyToDo.Shared;
-using System;
-using System.Collections.Generic;
 
 namespace MyToDo.Api.Context.UnitOfWork
 {

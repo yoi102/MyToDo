@@ -1,6 +1,4 @@
-﻿using MyToDo.Shared.Parameters;
-
-namespace MyToDo.Api.Service
+﻿namespace MyToDo.Api.Service
 {
     public interface IBaseService<T>
     {

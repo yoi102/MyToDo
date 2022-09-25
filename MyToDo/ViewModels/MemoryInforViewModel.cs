@@ -1,21 +1,13 @@
 ﻿using Hardware.Info;
 using LiveChartsCore;
 using LiveChartsCore.Defaults;
-using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using Prism.Commands;
 using SkiaSharp;
-using Syncfusion.Blazor;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Management;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Threading;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace MyToDo.ViewModels
 {
@@ -23,7 +15,6 @@ namespace MyToDo.ViewModels
     {
         public MemoryInforViewModel(IHardwareInfo hardwareInfo)
         {
-
             _physicalUsedMemoryValues = new ObservableCollection<ObservableValue>();
             _virtualUsedMemoryValues = new ObservableCollection<ObservableValue>();
 
@@ -35,7 +26,6 @@ namespace MyToDo.ViewModels
                 Fill = new SolidColorPaint(new SKColor(0, 255, 255, 90)),
                 Name = "PhysicalUsedMemory",
                 LineSmoothness = 0.2
-
                 }
             };
             VirtualUsedMemorySeries = new ObservableCollection<ISeries>
@@ -46,7 +36,6 @@ namespace MyToDo.ViewModels
                 Fill = new SolidColorPaint(new SKColor(0, 255, 255, 90)),
                 Name = "VirtualUsedMemory",
                 LineSmoothness = 0.2
-
                 }
             };
 
@@ -54,9 +43,6 @@ namespace MyToDo.ViewModels
             timer.Change(0, 1000);
             this.hardwareInfo = hardwareInfo;
         }
-
-
-
 
         private readonly ObservableCollection<ObservableValue> _physicalUsedMemoryValues;
         private readonly ObservableCollection<ObservableValue> _virtualUsedMemoryValues;
@@ -69,11 +55,13 @@ namespace MyToDo.ViewModels
             get { return _PhysicalUsedMemorySeries; }
             set { _PhysicalUsedMemorySeries = value; RaisePropertyChanged(); }
         }
+
         public ObservableCollection<ISeries> VirtualUsedMemorySeries
         {
             get { return _VirtualUsedMemorySeries; }
             set { _VirtualUsedMemorySeries = value; RaisePropertyChanged(); }
         }
+
         //private string _Text;
 
         //public string Text
@@ -82,12 +70,9 @@ namespace MyToDo.ViewModels
         //    set { _Text = value; RaisePropertyChanged(); }
         //}
 
-
-
-
-        void GetMemoRyData(object o)
+        private void GetMemoRyData(object o)
         {
-            //WMI 
+            //WMI
             ManagementClass osClass = new ManagementClass("Win32_OperatingSystem");
             var osClassInstances = osClass.GetInstances();
             foreach (var item in osClassInstances)
@@ -111,8 +96,6 @@ namespace MyToDo.ViewModels
             hardwareInfo.RefreshMemoryStatus();
             //Text = ((double)(hardwareInfo.MemoryStatus.TotalPhysical - hardwareInfo.MemoryStatus.AvailablePhysical) / 1024 / 1024 / 1024).ToString();
 
-
-
             _virtualUsedMemoryValues.Add(new ObservableValue(Math.Round(((double)(hardwareInfo.MemoryStatus.TotalVirtual - hardwareInfo.MemoryStatus.AvailableVirtual) / 1024 / 1024 / 1024) * 100) / 100));
 
             if (_virtualUsedMemoryValues.Count > 20)
@@ -121,29 +104,8 @@ namespace MyToDo.ViewModels
             }
         }
 
-
-
         public DelegateCommand TestCommand => new DelegateCommand(() =>
         {
-
-
-
-
-
-
-
-
-
         });
-
-
-
-
-
-
-
-
-
-
     }
 }

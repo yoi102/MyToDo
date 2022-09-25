@@ -1,9 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 using MyToDo.Shared;
-using Microsoft.EntityFrameworkCore;
 
 namespace MyToDo.Api.Context.UnitOfWork
 {

@@ -1,11 +1,4 @@
-﻿using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyToDo.Common.Models
+﻿namespace MyToDo.Common.Models
 {
     /// <summary>
     /// 系统导航菜单实体类
@@ -22,8 +15,6 @@ namespace MyToDo.Common.Models
             set { _IconKind = value; }
         }
 
-
-
         public string Title
         {
             get { return _Title; }
@@ -35,7 +26,5 @@ namespace MyToDo.Common.Models
             get { return _NameSpace; }
             set { _NameSpace = value; }
         }
-
-
     }
 }

@@ -1,16 +1,16 @@
-﻿using MyToDo.ViewModels;
+﻿using DryIoc;
+using Hardware.Info;
+using MyToDo.Common;
+using MyToDo.Service;
+using MyToDo.ViewModels;
+using MyToDo.ViewModels.Dialogs;
+using MyToDo.Views;
+using MyToDo.Views.Dialogs;
+using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Services.Dialogs;
 using System;
 using System.Windows;
-using MyToDo.Views;
-using Prism.DryIoc;
-using MyToDo.Service;
-using DryIoc;
-using MyToDo.Common;
-using MyToDo.Views.Dialogs;
-using MyToDo.ViewModels.Dialogs;
-using Hardware.Info;
 
 namespace MyToDo
 {
@@ -24,6 +24,7 @@ namespace MyToDo
             return Container.Resolve<MainWindow>();
             //return Container.Resolve<MainWindow>();
         }
+
         public static void LoginOut(IContainerProvider containerProvider)
         {
             Current.MainWindow.Hide();
@@ -40,6 +41,7 @@ namespace MyToDo
                 Current.MainWindow.Show();
             });
         }
+
         protected override void OnInitialized()
         {
             var dialog = Container.Resolve<IDialogService>();
@@ -57,6 +59,7 @@ namespace MyToDo
                 base.OnInitialized();
             });
         }
+
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<MainWindow, MainWindowModel>();
@@ -69,17 +72,20 @@ namespace MyToDo
             containerRegistry.RegisterForNavigation<ImageListBoxView, ImageListBoxViewModel>();
             containerRegistry.RegisterForNavigation<PCInforView, PCInforViewModel>();
             containerRegistry.RegisterForNavigation<MemoryInforView, MemoryInforViewModel>();
+            containerRegistry.RegisterForNavigation<TestView, TestViewModel>();
 
             containerRegistry.RegisterForNavigation<AddToDoView, AddToDoViewModel>();
             containerRegistry.RegisterForNavigation<AddMemoView, AddMemoViewModel>();
             containerRegistry.RegisterForNavigation<MsgView, MsgViewModel>();
 
             containerRegistry.RegisterDialog<LoginView, LoginViewModel>();
+
             containerRegistry.Register<IDialogHostService, DialogHostService>();
             containerRegistry.Register<IToDoService, ToDoService>();
-            containerRegistry.Register<IMemoService, MemoService>();
-            containerRegistry.Register<ILoginService, LoginService>();
-            containerRegistry.RegisterScoped<IHardwareInfo, HardwareInfo>();//有三种注册方式
+            containerRegistry.Register<IMemoService, MemoService>();//有三种注册方式
+            containerRegistry.Register<ILoginService, LoginService>();//每一次解析都会创建一个实例，仅限当前实例，同一个实例相当于同一个请求
+            containerRegistry.RegisterScoped<IHardwareInfo, HardwareInfo>();//在同一个Scope内只初始化一个实例，多个view中同一个范围？，
+            containerRegistry.RegisterSingleton<ITestService, TestService>();//单例
             containerRegistry.GetContainer().Register<HttpRestClient>(made: Parameters.Of.Type<string>(serviceKey: "webUrl"));
 
             containerRegistry.GetContainer().RegisterInstance(@"https://localhost:7211/", serviceKey: "webUrl");
@@ -94,16 +100,5 @@ namespace MyToDo
         //        service.Configure();
 
         //}
-
-
-
-
-
-
-
-
-
-
-
     }
 }

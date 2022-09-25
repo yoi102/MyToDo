@@ -4,7 +4,7 @@ using MyToDo.Shared.Dtos;
 
 namespace MyToDo.Api.Extensions
 {
-    public class AutoMapperProFile:MapperConfigurationExpression
+    public class AutoMapperProFile : MapperConfigurationExpression
     {
         public AutoMapperProFile()
         {

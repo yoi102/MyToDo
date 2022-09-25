@@ -3,11 +3,11 @@
 namespace MyToDo.Views
 {
     /// <summary>
-    /// SkinView.xaml 的交互逻辑
+    /// TestView.xaml 的交互逻辑
     /// </summary>
-    public partial class SkinView : UserControl
+    public partial class TestView : UserControl
     {
-        public SkinView()
+        public TestView()
         {
             InitializeComponent();
         }

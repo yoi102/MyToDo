@@ -26,7 +26,6 @@
                     Value="NoResize" />
             <Setter Property="prism:Dialog.WindowStartupLocation"
                     Value="CenterScreen" />
-
         </Style>
     </prism:Dialog.WindowStyle>
     <Grid Background="White">
@@ -84,7 +83,6 @@
                                                        CommandParameter="GoRegister" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>-->
-
                             </TextBlock>
                         </Hyperlink>
                     </TextBlock>
@@ -97,7 +95,6 @@
                             CommandParameter="DirectLogin"
                             DockPanel.Dock="Bottom" />
                 </DockPanel>
-
             </md:TransitionerSlide>
 
             <md:TransitionerSlide>
@@ -145,13 +142,8 @@
                             Content="返回账号"
                             Command="{Binding ExecuteCommand}"
                             CommandParameter="Return" />
-
                 </DockPanel>
-
             </md:TransitionerSlide>
-
         </md:Transitioner>
-
     </Grid>
-
 </UserControl>

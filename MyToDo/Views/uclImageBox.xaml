@@ -61,9 +61,7 @@
                                     <i:CallMethodAction TargetObject="{Binding}"
                                                         MethodName="ImageMouseDown" />
                                 </i:EventTrigger>
-
                             </i:Interaction.Triggers>
-
                         </Image>
                     </ScrollViewer>
                 </Grid>
@@ -93,12 +91,8 @@
                                Foreground="White" />
                     <TextBlock Text="{Binding B}"
                                Foreground="White" />
-
                 </StackPanel>
-
             </Grid>
-
         </Border>
-
     </Grid>
 </UserControl>

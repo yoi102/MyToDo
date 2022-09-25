@@ -1,5 +1,4 @@
 ﻿using MyToDo.Shared.Dtos;
-using MyToDo.Api.Context;
 using MyToDo.Shared.Parameters;
 
 namespace MyToDo.Api.Service

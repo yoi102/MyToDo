@@ -6,10 +6,10 @@
 
 namespace MyToDo.Api.Context.UnitOfWork
 {
+    using Microsoft.EntityFrameworkCore.ChangeTracking;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using Microsoft.EntityFrameworkCore.ChangeTracking;
 
     /// <summary>
     /// Defines the interface(s) for unit of work.

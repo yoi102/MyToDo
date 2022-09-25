@@ -1,9 +1,4 @@
 ﻿using Microsoft.Xaml.Behaviors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -11,33 +6,23 @@ namespace MyToDo.Extensions
 {
     //    public class PasswordExtensions
     //    {
-
     //        public static string GetPassword(DependencyObject obj)
     //        {
     //            return (string)obj.GetValue(PasswordProperty);
     //        }
-
-
 
     //        public static void SetPasword(DependencyObject obj, string value)
     //        {
     //            obj.SetValue(PasswordProperty, value);
     //        }
 
-
     //        // Using a DependencyProperty as the backing store for Password.  This enables animation, styling, binding, etc...
     //        public static readonly DependencyProperty PasswordProperty =
     //            DependencyProperty.RegisterAttached("Password", typeof(string), typeof(PasswordExtensions), new FrameworkPropertyMetadata(string.Empty, OnPasswordPropertyChanged));
 
-
-
-
-
     //        static void OnPasswordPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
     //        {
-
     //            var passwordBox = sender as PasswordBox;
-
 
     //            if (passwordBox != null && passwordBox.Password != (string)e.NewValue)
     //            {
@@ -46,15 +31,10 @@ namespace MyToDo.Extensions
     //            }
     //        }
 
-
-
-
     //    }
-
 
     //    public  class PasswordBehavior : Behavior<PasswordBox>
     //    {
-
     //        protected override void OnAttached( )
     //        {
     //            base.OnAttached();
@@ -64,12 +44,11 @@ namespace MyToDo.Extensions
 
     //        private void AssociatedObject_PasswordChanged(object sender, RoutedEventArgs e)
     //        {
-
     //            var passwordBox = sender as PasswordBox;
 
     //            string password = PasswordExtensions.GetPassword(passwordBox);
 
-    //            if (password != null && passwordBox.Password!=password) 
+    //            if (password != null && passwordBox.Password!=password)
     //            {
     //                PasswordExtensions.SetPasword(passwordBox, passwordBox.Password);
     //            }
@@ -80,17 +59,9 @@ namespace MyToDo.Extensions
     //            base.OnDetaching();
     //            AssociatedObject.PasswordChanged -= AssociatedObject_PasswordChanged;
 
-
     //        }
 
-
     //    }
-
-
-
-
-
-
 
     //}
     public class PassWordExtensions
@@ -108,7 +79,7 @@ namespace MyToDo.Extensions
         public static readonly DependencyProperty PassWordProperty =
             DependencyProperty.RegisterAttached("PassWord", typeof(string), typeof(PassWordExtensions), new FrameworkPropertyMetadata(string.Empty, OnPassWordPropertyChanged));
 
-        static void OnPassWordPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        private static void OnPassWordPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var passWord = sender as PasswordBox;
             string password = (string)e.NewValue;
@@ -141,6 +112,4 @@ namespace MyToDo.Extensions
             AssociatedObject.PasswordChanged -= AssociatedObject_PasswordChanged;
         }
     }
-
 }
-

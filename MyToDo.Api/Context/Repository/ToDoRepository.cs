@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MyToDo.Api.Context;
-using MyToDo.Api.Context.UnitOfWork;
+﻿using MyToDo.Api.Context.UnitOfWork;
 
 namespace MyToDo.Api.Context.Repository
 {

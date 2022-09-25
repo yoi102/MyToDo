@@ -1,21 +1,11 @@
-﻿using OpenCvSharp.WpfExtensions;
-using OpenCvSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OpenCvSharp;
+using OpenCvSharp.WpfExtensions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Point = System.Windows.Point;
-using static ImTools.ImMap;
 
 namespace MyToDo.Views
 {
@@ -27,17 +17,16 @@ namespace MyToDo.Views
         public uclImage()
         {
             InitializeComponent();
-
         }
+
         private double _X;
         private double _Y;
         private Vec3b[,] _ImageData3b;
         private byte[,] _ImageDatab;
         private Point _MiddleButtonClickedPosition;//记录中键点击的位置。。。。。中间拖拉移动
 
-
-
         private BitmapSource _ImageSource;
+
         public BitmapSource ImageSource
         {
             get { return (BitmapSource)GetValue(ImageSourceProperty); }
@@ -51,17 +40,9 @@ namespace MyToDo.Views
                 new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure,
                     new PropertyChangedCallback(OnCurrentReadingChanged)));
 
-
-
         private static void OnCurrentReadingChanged(DependencyObject depObj, DependencyPropertyChangedEventArgs e)
         {
-     
-
-
-
         }
-
-
 
         private void Image_MouseMove(object sender, MouseEventArgs e)
         {
@@ -73,7 +54,6 @@ namespace MyToDo.Views
 
             double xRatio = ImageSource.Width / imageControl.ActualWidth;
             double yRatio = ImageSource.Height / imageControl.ActualHeight;
-
 
             _X = (float)(x * xRatio);
             _Y = (float)(y * yRatio);
@@ -95,7 +75,6 @@ namespace MyToDo.Views
                 Path_R.Text = _ImageDatab[(int)_Y, (int)_X].ToString("000");
             }
 
-
             //当中键按下，移动图片
             if (e.MiddleButton == MouseButtonState.Pressed)
             {
@@ -105,14 +84,11 @@ namespace MyToDo.Views
 
                 ttf.X += cursorPosition.X - _MiddleButtonClickedPosition.X;
                 ttf.Y += cursorPosition.Y - _MiddleButtonClickedPosition.Y;
-
             }
-
         }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
             using (Mat mat = ImageSource.ToMat())
             {
                 if (mat.Channels() == 3)
@@ -127,7 +103,6 @@ namespace MyToDo.Views
                     _ImageDatab = vecDs;
                     _ImageData3b = null;
                 }
-
             }
         }
 
@@ -139,7 +114,6 @@ namespace MyToDo.Views
 
         private void Image_MouseWheel(object sender, MouseWheelEventArgs e)
         {
-
             Image sf = sender as Image;
             var group = sf.RenderTransform as TransformGroup;
             var sc = group.Children[0] as ScaleTransform;//对应Xaml位置    这样搞，放大缩小有点奇怪
@@ -158,11 +132,7 @@ namespace MyToDo.Views
                     sc.ScaleX -= 0.02;
                     sc.ScaleY -= 0.02;
                 }
-
             }
-
-
-
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -174,7 +144,6 @@ namespace MyToDo.Views
             var group = im.RenderTransform as TransformGroup;
             group.Children[0] = new ScaleTransform();
             group.Children[1] = new TranslateTransform();
-
         }
     }
 }

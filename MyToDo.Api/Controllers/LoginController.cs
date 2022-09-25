@@ -1,9 +1,6 @@
-﻿using MyToDo.Shared.Dtos;
-using Microsoft.AspNetCore.Mvc;
-using MyToDo.Api.Context;
-using MyToDo.Api.Context.UnitOfWork;
+﻿using Microsoft.AspNetCore.Mvc;
 using MyToDo.Api.Service;
-using MyToDo.Shared.Parameters;
+using MyToDo.Shared.Dtos;
 
 namespace MyToDo.Api.Controllers
 {
@@ -33,7 +30,7 @@ namespace MyToDo.Api.Controllers
         {
 
             return await service.Resgiter(param);
-        } 
+        }
 
 
 

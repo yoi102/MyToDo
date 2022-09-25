@@ -1,8 +1,6 @@
-﻿using MyToDo.Shared.Dtos;
-using Microsoft.AspNetCore.Mvc;
-using MyToDo.Api.Context;
-using MyToDo.Api.Context.UnitOfWork;
+﻿using Microsoft.AspNetCore.Mvc;
 using MyToDo.Api.Service;
+using MyToDo.Shared.Dtos;
 using MyToDo.Shared.Parameters;
 
 namespace MyToDo.Api.Controllers

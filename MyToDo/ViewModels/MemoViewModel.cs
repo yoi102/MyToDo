@@ -1,39 +1,31 @@
 ﻿using MyToDo.Common;
-using MyToDo.Common.Models;
 using MyToDo.Extensions;
 using MyToDo.Service;
 using MyToDo.Shared.Dtos;
 using MyToDo.Shared.Parameters;
 using Prism.Commands;
 using Prism.Ioc;
-using Prism.Mvvm;
 using Prism.Regions;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyToDo.ViewModels
 {
     public class MemoViewModel : NavigationViewModel
     {
-
         public MemoViewModel(IMemoService service, IContainerProvider containerProvider) : base(containerProvider)
         {
             MemoDtos = new ObservableCollection<MemoDto>();
             this.service = service;
             dialogHost = containerProvider.Resolve<IDialogHostService>();
-
         }
+
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
             base.OnNavigatedTo(navigationContext);
 
-
             CreateMemoList();
-
         }
+
         private ObservableCollection<MemoDto> _MemoDtos;
         private MemoDto _CurrentMemo;
         private bool _IsRightDrawerOpen;
@@ -45,12 +37,14 @@ namespace MyToDo.ViewModels
         {
             get { return _MemoDtos; }
             set { _MemoDtos = value; RaisePropertyChanged(); }
-        }     
+        }
+
         public MemoDto CurrentMemo
         {
             get { return _CurrentMemo; }
             set { _CurrentMemo = value; RaisePropertyChanged(); }
         }
+
         /// <summary>
         /// 搜索条件
         /// </summary>
@@ -59,7 +53,6 @@ namespace MyToDo.ViewModels
             get { return _Search; }
             set { _Search = value; RaisePropertyChanged(); }
         }
-
 
         /// <summary>
         /// 右侧展开
@@ -70,20 +63,11 @@ namespace MyToDo.ViewModels
             set { _IsRightDrawerOpen = value; RaisePropertyChanged(); }
         }
 
-
-
-
-
-
-
-
-        async void CreateMemoList()
+        private async void CreateMemoList()
         {
             UpdateLoading(true);
 
-
             var memoResult = await service.GetAllAsync();
-
 
             if (memoResult.Status)
             {
@@ -91,58 +75,35 @@ namespace MyToDo.ViewModels
                 foreach (var item in memoResult.Result)
                 {
                     MemoDtos.Add(item);
-
                 }
-
             }
             UpdateLoading(false);
-
-
-
-
         }
-
-
-
-
 
         /// <summary>
         /// 执行命令
         /// </summary>
 
-        public DelegateCommand<string> ExecuteCommand =>  new DelegateCommand<string>((o) =>
+        public DelegateCommand<string> ExecuteCommand => new DelegateCommand<string>((o) =>
         {
-
             switch (o)
             {
                 case "新增": Add(); break;
                 case "查询": Query(); break;
                 case "保存": Save(); break;
             }
-
-
-
-
         });
-
-
-
-
 
         private async void Save()
         {
-
-
             if (string.IsNullOrWhiteSpace(CurrentMemo.Title) || string.IsNullOrWhiteSpace(CurrentMemo.Content))
             {
-
                 return;
             }
 
             UpdateLoading(true);
             try
             {
-
                 if (CurrentMemo.Id > 0)//更新
                 {
                     var updateResult = await service.UpdateAsync(CurrentMemo);
@@ -156,7 +117,6 @@ namespace MyToDo.ViewModels
                         }
                         IsRightDrawerOpen = false;
                         aggregator.SendMessage("已更新备忘录！");
-
                     }
                 }
                 else//新增
@@ -168,40 +128,30 @@ namespace MyToDo.ViewModels
                         MemoDtos.Add(addResult.Result);
                         IsRightDrawerOpen = false;
                         aggregator.SendMessage("已添加备忘录！");
-
                     }
                 }
-
-
             }
             catch
             {
-
             }
             finally
             {
-
                 UpdateLoading(false);
-
             }
-
-
         }
 
-        void Add()
+        private void Add()
         {
             IsRightDrawerOpen = true;
             CurrentMemo = new MemoDto();
-
-
         }
+
         /// <summary>
         /// 搜索
         /// </summary>
-        async void Query()
+        private async void Query()
         {
             UpdateLoading(true);
-
 
             var todoResult = await service.GetSearchAsync(new QueryParameter() { Search = Search });
 
@@ -211,18 +161,12 @@ namespace MyToDo.ViewModels
                 foreach (var item in todoResult.Result)
                 {
                     MemoDtos.Add(item);
-
                 }
                 aggregator.SendMessage("已完成搜索！");
-
             }
-
 
             UpdateLoading(false);
         }
-
-
-
 
         /// <summary>
         /// 选中对象
@@ -237,27 +181,19 @@ namespace MyToDo.ViewModels
                 {
                     CurrentMemo = todoResult.Result;
                     IsRightDrawerOpen = true;
-
                 }
-
             }
             catch
             {
-
             }
             finally
             {
                 UpdateLoading(false);
-
             }
-
         });
-
-
 
         public DelegateCommand<MemoDto> DeleteCommand => new DelegateCommand<MemoDto>(async (obj) =>
         {
-
             var dialogResult = await dialogHost.Question("温馨提示", $"确认删除备忘录：{obj.Title}？");
             if (dialogResult.Result != Prism.Services.Dialogs.ButtonResult.OK) return;
             UpdateLoading(true);
@@ -273,22 +209,9 @@ namespace MyToDo.ViewModels
                     MemoDtos.Remove(model);
 
                     aggregator.SendMessage("已完成删除！");
-
                 }
-
             }
             UpdateLoading(false);
-
         });
-
-
-
-
-
-
-
-
-
-
     }
 }

@@ -1,7 +1,5 @@
 ﻿// Copyright (c) Arch team. All rights reserved.
 
-using System.Collections.Generic;
-
 namespace MyToDo.Shared
 {
     /// <summary>

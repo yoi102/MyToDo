@@ -1,11 +1,4 @@
-﻿using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyToDo.Common.Models
+﻿namespace MyToDo.Common.Models
 {
     public class TaskBar : BindableBase
     {
@@ -20,8 +13,6 @@ namespace MyToDo.Common.Models
             get { return _Icon; }
             set { _Icon = value; RaisePropertyChanged(); }
         }
-
-
 
         public string Title
         {
@@ -46,12 +37,5 @@ namespace MyToDo.Common.Models
             get { return _Target; }
             set { _Target = value; RaisePropertyChanged(); }
         }
-
-
-
-
-
-
-
     }
 }

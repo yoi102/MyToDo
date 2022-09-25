@@ -6,10 +6,6 @@ using Prism.Commands;
 using Prism.Events;
 using Prism.Services.Dialogs;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyToDo.ViewModels.Dialogs
 {
@@ -20,7 +16,6 @@ namespace MyToDo.ViewModels.Dialogs
             this.service = service;
             this.aggregator = aggregator;
         }
-
 
         public string Title { get; set; } = "ToDo";
 
@@ -38,10 +33,7 @@ namespace MyToDo.ViewModels.Dialogs
 
         public void OnDialogOpened(IDialogParameters parameters)
         {
-
-
         }
-
 
         private string _Account;
         private string _Password;
@@ -67,48 +59,33 @@ namespace MyToDo.ViewModels.Dialogs
             get { return _SelectedIndex; }
             set { _SelectedIndex = value; RaisePropertyChanged(); }
         }
+
         public RegisterUserDto UserDto
         {
             get { return _UserDto; }
             set { _UserDto = value; RaisePropertyChanged(); }
         }
 
-
-
-
         public DelegateCommand<string> ExecuteCommand => new DelegateCommand<string>((arg) =>
         {
-
             switch (arg)
             {
-
-
                 case "Login": Login(); break;
                 case "LoginOut": LoginOut(); break;
                 case "GoRegister": GoRegister(); break;//
                 case "Register": Register(); break;
                 case "Return": Return(); break;
                 case "DirectLogin": DirectLogin(); break;
-
-
             }
-
-
-
-
         });
 
         private void DirectLogin()
         {
-
             RequestClose?.Invoke(new DialogResult(ButtonResult.OK));
-
-
         }
 
         private async void Register()
         {
-
             if (string.IsNullOrWhiteSpace(UserDto.Account) ||
                           string.IsNullOrWhiteSpace(UserDto.UserName) ||
                           string.IsNullOrWhiteSpace(UserDto.Password) ||
@@ -123,15 +100,11 @@ namespace MyToDo.ViewModels.Dialogs
                 return;
             }
 
-
             var registerResult = await service.RegisterAsync(new UserDto()
             {
-
-
                 Account = UserDto.Account,
                 UserName = UserDto.UserName,
                 Password = UserDto.Password,
-
             });
 
             if (registerResult != null && registerResult.Status)
@@ -142,7 +115,6 @@ namespace MyToDo.ViewModels.Dialogs
             }
             else
                 aggregator.SendMessage(registerResult.Message, "Login");
-
         }
 
         private void Return()
@@ -153,19 +125,15 @@ namespace MyToDo.ViewModels.Dialogs
         private void GoRegister()
         {
             SelectedIndex = 1;
-
         }
 
         private void LoginOut()
         {
-
             RequestClose?.Invoke(new DialogResult(ButtonResult.No));
-
         }
 
         private async void Login()
         {
-         
             if (string.IsNullOrWhiteSpace(Account) ||
               string.IsNullOrWhiteSpace(Password))
             {
@@ -179,24 +147,16 @@ namespace MyToDo.ViewModels.Dialogs
                 Password = _Password
             });
 
-
-
             if (loginResult != null && loginResult.Status)
             {
                 AppSession.UserName = loginResult.Result.UserName;
                 RequestClose?.Invoke(new DialogResult(ButtonResult.OK));
-
             }
             else
             {
                 //登录失败提示...
                 aggregator.SendMessage(loginResult.Message, "Login");
             }
-
-
-
-
-
         }
     }
 }

@@ -1,10 +1,5 @@
 ﻿using MyToDo.Shared;
-using MyToDo.Shared.Dtos;
-using MyToDo.Shared.Parameters;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MyToDo.Service
@@ -20,19 +15,14 @@ namespace MyToDo.Service
             this.serviceName = serviceName;
         }
 
-
-
         public async Task<ApiResponse<TEntity>> AddAsync(TEntity entity)
         {
-
             BaseRequest request = new BaseRequest();
             request.Method = RestSharp.Method.Post;
             request.Route = $"api/{serviceName}/Add";
             request.Parameter = entity;
 
             return await client.ExecuteAsync<TEntity>(request);
-
-
         }
 
         public async Task<ApiResponse> DeleteAsync(int id)
@@ -50,18 +40,11 @@ namespace MyToDo.Service
             request.Method = RestSharp.Method.Get;
             //request.Route = $"api/{serviceName}/GetAll?pageIndex={parameter.PageIndex}" +
             //    $"&pageSize={parameter.PageSize}" +
-            //    $"&search={parameter.Search}";   
+            //    $"&search={parameter.Search}";
             request.Route = $"api/{serviceName}/GetAll";
 
             return await client.ExecuteAsync<List<TEntity>>(request);
         }
-
-
-
-
-
-
-
 
         public async Task<ApiResponse<TEntity>> GetFirstOfDefaultAsync(int id)
         {
@@ -69,10 +52,8 @@ namespace MyToDo.Service
             request.Method = RestSharp.Method.Get;
             request.Route = $"api/{serviceName}/Get?id={id}";
 
-
             return await client.ExecuteAsync<TEntity>(request);
         }
-
 
         public async Task<ApiResponse<TEntity>> UpdateAsync(TEntity entity)
         {
@@ -83,7 +64,5 @@ namespace MyToDo.Service
 
             return await client.ExecuteAsync<TEntity>(request);
         }
-
-
     }
 }

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using MyToDo.Api.Context;
@@ -27,9 +26,9 @@ builder.Services.AddDbContext<MyToDoContext>(options =>
 
 
 }).AddUnitOfWork<MyToDoContext>()
-.AddCustomRepository<ToDo,ToDoRepository>()
-.AddCustomRepository<Memo,MemoRepository>()
-.AddCustomRepository<User,UserRepository>();
+.AddCustomRepository<ToDo, ToDoRepository>()
+.AddCustomRepository<Memo, MemoRepository>()
+.AddCustomRepository<User, UserRepository>();
 
 builder.Services.AddTransient<IToDoService, ToDoService>();
 builder.Services.AddTransient<IMemoService, MemoService>();

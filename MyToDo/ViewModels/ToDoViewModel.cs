@@ -1,8 +1,6 @@
 ﻿global using Prism.Mvvm;
 global using System.Collections.ObjectModel;
-using MaterialDesignThemes.Wpf;
 using MyToDo.Common;
-using MyToDo.Common.Models;
 using MyToDo.Extensions;
 using MyToDo.Service;
 using MyToDo.Shared.Dtos;
@@ -10,28 +8,19 @@ using MyToDo.Shared.Parameters;
 using Prism.Commands;
 using Prism.Ioc;
 using Prism.Regions;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Management;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 
 namespace MyToDo.ViewModels
 {
     public class ToDoViewModel : NavigationViewModel
     {
-
         public ToDoViewModel(IToDoService service, IContainerProvider containerProvider) : base(containerProvider)
         {
             this.service = service;
             ToDoDtos = new ObservableCollection<ToDoDto>();
             dialogHost = containerProvider.Resolve<IDialogHostService>();
-
-
         }
+
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
             base.OnNavigatedTo(navigationContext);
@@ -45,10 +34,7 @@ namespace MyToDo.ViewModels
             {
                 SelectedIndex = 0;
                 GetDataAsync();
-
             }
-
-
         }
 
         private ObservableCollection<ToDoDto> _ToDoDtos;//仅从webapi中获取搜索的需要的，如需较少搜索时间，还可回去api中的全部数据，再当前数据中再筛选
@@ -59,7 +45,6 @@ namespace MyToDo.ViewModels
         private bool _IsRightDrawerOpen;
         private DelegateCommand<string> _ExecuteCommand;
         private int _SelectedIndex;
-
 
         /// <summary>
         /// 下拉列表选中状态值
@@ -78,6 +63,7 @@ namespace MyToDo.ViewModels
             get { return _ToDoDtos; }
             set { _ToDoDtos = value; RaisePropertyChanged(); }
         }
+
         /// <summary>
         /// 当前选择的Item
         /// </summary>
@@ -86,6 +72,7 @@ namespace MyToDo.ViewModels
             get { return _CurrentToDo; }
             set { _CurrentToDo = value; RaisePropertyChanged(); }
         }
+
         /// <summary>
         /// 搜索条件
         /// </summary>
@@ -94,6 +81,7 @@ namespace MyToDo.ViewModels
             get { return _Search; }
             set { _Search = value; RaisePropertyChanged(); }
         }
+
         /// <summary>
         /// 右侧展开
         /// </summary>
@@ -106,7 +94,7 @@ namespace MyToDo.ViewModels
         /// <summary>
         /// 获取数据
         /// </summary>
-        async void GetDataAsync()
+        private async void GetDataAsync()
         {
             UpdateLoading(true);
 
@@ -118,26 +106,11 @@ namespace MyToDo.ViewModels
                 foreach (var item in todoResult.Result)
                 {
                     ToDoDtos.Add(item);
-
                 }
             }
 
-
             UpdateLoading(false);
-
-
-
         }
-
-
-
-
-
-
-
-
-
-
 
         /// <summary>
         /// 执行命令
@@ -145,37 +118,25 @@ namespace MyToDo.ViewModels
 
         public DelegateCommand<string> ExecuteCommand => _ExecuteCommand ??= new DelegateCommand<string>((o) =>
         {
-
             switch (o)
             {
                 case "新增": Add(); break;
                 case "查询": Query(); break;
                 case "保存": Save(); break;
             }
-
-
-
-
         });
-
-
 
         private async void Save()
         {
-
-
             if (string.IsNullOrWhiteSpace(CurrentToDo.Title) || string.IsNullOrWhiteSpace(CurrentToDo.Content))
             {
-
                 return;
             }
-
 
             UpdateLoading(true);
 
             try
             {
-
                 if (CurrentToDo.Id > 0)//更新
                 {
                     var updateResult = await service.UpdateAsync(CurrentToDo);
@@ -187,11 +148,9 @@ namespace MyToDo.ViewModels
                             todo.Title = CurrentToDo.Title;
                             todo.Content = CurrentToDo.Content;
                             todo.Status = CurrentToDo.Status;
-
                         }
                         IsRightDrawerOpen = false;
                         aggregator.SendMessage("已更新待办事项！");
-
                     }
                 }
                 else//新增
@@ -203,37 +162,28 @@ namespace MyToDo.ViewModels
                         ToDoDtos.Add(addResult.Result);
                         IsRightDrawerOpen = false;
                         aggregator.SendMessage("已添加待办事项！");
-
                     }
                 }
-
-
             }
             catch
             {
-
             }
             finally
             {
-
                 UpdateLoading(false);
-
             }
-
-
         }
 
-        void Add()
+        private void Add()
         {
             IsRightDrawerOpen = true;
             CurrentToDo = new ToDoDto();
-
-
         }
+
         /// <summary>
         /// 搜索
         /// </summary>
-        async void Query()
+        private async void Query()
         {
             UpdateLoading(true);
 
@@ -247,17 +197,12 @@ namespace MyToDo.ViewModels
                 foreach (var item in todoResult.Result)
                 {
                     ToDoDtos.Add(item);
-
                 }
                 aggregator.SendMessage("已完成搜索！");
-
             }
-
 
             UpdateLoading(false);
         }
-
-
 
         /// <summary>
         /// 选中对象
@@ -272,32 +217,23 @@ namespace MyToDo.ViewModels
                 {
                     CurrentToDo = todoResult.Result;
                     IsRightDrawerOpen = true;
-
                 }
-
             }
             catch
             {
-
             }
             finally
             {
                 UpdateLoading(false);
-
             }
-
         });
-
 
         public DelegateCommand<ToDoDto> DeleteCommand => new DelegateCommand<ToDoDto>(async (obj) =>
         {
-
-
             var dialogResult = await dialogHost.Question("温馨提示", $"确认删除待办事项：{obj.Title}？");
             if (dialogResult.Result != Prism.Services.Dialogs.ButtonResult.OK) return;
 
             UpdateLoading(true);
-
 
             var deleteResult = await service.DeleteAsync(obj.Id);
 
@@ -310,19 +246,13 @@ namespace MyToDo.ViewModels
                     ToDoDtos.Remove(model);
                     aggregator.SendMessage("已删除！");
                 }
-
             }
             UpdateLoading(false);
-
         });
 
         public DelegateCommand SelectionChangedCommand => new DelegateCommand(() =>
         {
-
             Query();
-
-
-
 
             //// Get the WMI class
             //ManagementClass osClass =
@@ -369,43 +299,20 @@ namespace MyToDo.ViewModels
 
             //    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             //ManagementClass mcMemory = new ManagementClass("Win32_OperatingSystem");
             //ManagementObjectCollection mocMemory = mcMemory.GetInstances();
             //var s = mcMemory.Properties;
-
-
-
-
 
             //foreach (ManagementObject mo in mocMemory)
             //{
             //    var v = mo.Properties["TotalVisibleMemorySize"].Value;
             //    var sv = mo.Properties["VisibleMemorySize"].Value;
 
-
             //    if (mo.Properties["TotalVisibleMemorySize"].Value != null)
             //    {
             //        MessageBox.Show(mo.Properties["TotalVisibleMemorySize"].Value.ToString());
             //    }
             //}
-
-
 
             //// Get the WMI class
             //ManagementClass processClass =
@@ -434,35 +341,11 @@ namespace MyToDo.ViewModels
             //        Console.WriteLine();
             //    }
 
-
-
-
-
-
-
-
-
-
             //ManagementClass class2 = new ManagementClass("Win32_Processor");
             //foreach (ManagementObject obj2 in class2.GetInstances())
             //{
             //    var cpuInfo = obj2.Properties["ProcessorId"].Value.ToString();
             //}
-
-
-
-
-
-
         });
-
-
-
-
-
-
-
-
-
     }
 }

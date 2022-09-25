@@ -9,12 +9,11 @@
              prism:ViewModelLocator.AutoWireViewModel="True"
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:MyToDo.Views"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
 
         <cv:IntToVisibilityConveter x:Key="IntToVisibility" />
-
     </UserControl.Resources>
     <md:DialogHost>
 
@@ -30,7 +29,6 @@
                                FontWeight="Bold" />
                     <!--<StackPanel Orientation="Horizontal"
                                 DockPanel.Dock="Top">
-
                     </StackPanel>-->
                     <TextBox Margin="20 10"
                              md:HintAssist.Hint="请输入备忘录概要"
@@ -46,9 +44,7 @@
                             Command="{Binding ExecuteCommand}"
                             CommandParameter="保存"
                             DockPanel.Dock="Top" />
-
                 </DockPanel>
-
             </md:DrawerHost.RightDrawerContent>
 
             <Grid>
@@ -70,12 +66,10 @@
                                         CommandParameter="查询"
                                         Command="{Binding ExecuteCommand}" />
                         </TextBox.InputBindings>
-
                     </TextBox>
-
                 </StackPanel>
 
-                <Button HorizontalAlignment="Right"
+                <Button Template="{DynamicResource ButtonTemplate1}" HorizontalAlignment="Right"
                         Content="+ 添加备忘录"
                         CommandParameter="新增"
                         Command="{Binding ExecuteCommand}"
@@ -100,7 +94,7 @@
                                             MinHeight="180"
                                             MaxHeight="250"
                                             Background="SkyBlue">
-                                        
+
                                         <Grid>
                                             <Grid Margin="8"
                                                   Panel.ZIndex="1">
@@ -121,7 +115,6 @@
                                                     <Button  Content="删除"
                                                              CommandParameter="{Binding}"
                                                              Command="{Binding DataContext.DeleteCommand,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=ItemsControl} }" />
-
                                                 </md:PopupBox>
 
                                                 <TextBlock Text="{Binding Title}"
@@ -129,7 +122,6 @@
                                                            FontWeight="Bold" />
                                                 <TextBlock Text="{Binding Content}"
                                                            Grid.Row="1" />
-
                                             </Grid>
                                             <Canvas ClipToBounds="True">
                                                 <Border Canvas.Top="10"
@@ -146,26 +138,12 @@
                                                         Height="120"
                                                         Background="#ffff"
                                                         Opacity="0.2" />
-
                                             </Canvas>
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
                                         </Grid>
-
                                     </Border>
-
                                 </md:TransitioningContent>
-
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
-
                     </ItemsControl>
                 </ScrollViewer>
 
@@ -179,11 +157,7 @@
                                Margin="0 10"
                                HorizontalAlignment="Center" />
                 </StackPanel>
-
             </Grid>
-
         </md:DrawerHost>
-
     </md:DialogHost>
-
 </UserControl>

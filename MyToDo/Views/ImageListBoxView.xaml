@@ -30,7 +30,6 @@
                           VerticalAlignment="Stretch" />
             <local:uclImage Grid.Column="2"
                             ImageSource="{Binding ImageBox.Image}" />
-
         </Grid>
         <!--<Button Content="cccc"
                 Grid.Row="2"
@@ -72,7 +71,6 @@
                                                  Style="{StaticResource MaterialDesignIconButton}" />
                                         <Image Source="{Binding MyImage}"
                                                Grid.Row="1" />
-
                                     </Grid>
                                     <Canvas ClipToBounds="True">
                                         <Border Canvas.Top="10"
@@ -89,17 +87,12 @@
                                                 Height="120"
                                                 Background="#ffff"
                                                 Opacity="0.2" />
-
                                     </Canvas>
                                 </Grid>
-
                             </Border>
-
                         </md:TransitioningContent>
-
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-
             </ItemsControl>
         </ScrollViewer>
     </Grid>

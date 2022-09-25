@@ -1,32 +1,20 @@
-﻿using Prism.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using MyToDo.Service;
+using Prism.Commands;
 using System.Management;
-using System.Reflection.Metadata;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MyToDo.ViewModels
 {
     public class PCInforViewModel : BindableBase
     {
-
-        public PCInforViewModel()
+        public PCInforViewModel(ITestService testService)
         {
-
-
-
-
             Task.Run(() => GetInfor());
-
-
+            this.testService = testService;
         }
 
-
-        void GetInfor()
+        private void GetInfor()
         {
-
             SysContent = "";
             Content = "";
 
@@ -49,7 +37,6 @@ namespace MyToDo.ViewModels
             {
                 SysContent += "\r---------------------------------------";
 
-
                 foreach (ManagementObject c in osClassInstances)
                 {
                     SysContent += $"\rc[systemProperties.Name]: {c[systemProperties.Name]}";//视乎就是Value
@@ -67,7 +54,6 @@ namespace MyToDo.ViewModels
                     }
                     catch
                     {
-
                     }
                     foreach (QualifierData q in systemProperties.Qualifiers)
                     {
@@ -75,23 +61,13 @@ namespace MyToDo.ViewModels
                     }
 
                     SysContent += "\r";
-
                 }
-
-
             }
-
-
-
-
-
-
 
             // display the Property names
             Content += "Property Name: ";
             foreach (PropertyData property in properties)
             {
-
                 Content += "\r---------------------------------------";
                 Content += $"\rName: {property.Name}";
                 Content += "\r";
@@ -101,7 +77,6 @@ namespace MyToDo.ViewModels
                     Content += "\rDescription: " +
                     property.Qualifiers["Description"].Value;
                     Content += "\r";
-
                 }
                 catch
                 {
@@ -111,9 +86,7 @@ namespace MyToDo.ViewModels
                 Content += "\rType: " + property.Type;
                 Content += "\r";
 
-
                 Content += "\rQualifiers: ";
-
 
                 foreach (QualifierData q in property.Qualifiers)
                 {
@@ -122,20 +95,21 @@ namespace MyToDo.ViewModels
                 Content += "\r";
                 foreach (ManagementObject c in osClassInstances)
                 {
-
                     Content += $"\rValue: {c.Properties[property.Name.ToString()].Value}";
                 }
                 Content += "\r";
-
             }
         }
 
+        private readonly ITestService testService;
 
+        private int _Test;
 
-
-
-
-
+        public int Test
+        {
+            get { return _Test; }
+            set { _Test = value; RaisePropertyChanged(); }
+        }
 
         private string _Content = "";
 
@@ -153,21 +127,13 @@ namespace MyToDo.ViewModels
             set { _SysContent = value; RaisePropertyChanged(); }
         }
 
-
-
-
         public DelegateCommand TestCommand => new DelegateCommand(() =>
         {
-
-
             Task.Run(() => GetInfor());
 
+            testService.MyProperty += 1;
 
+            Test = testService.MyProperty;
         });
-
-
-
-
-
     }
 }

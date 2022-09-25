@@ -12,9 +12,8 @@
             <ProgressBar Width=" 40"
                          Margin="20"
                          Height="40"
-                         IsIndeterminate="True" 
-                         Style="{StaticResource MaterialDesignCircularProgressBar}"/>
-
+                         IsIndeterminate="True"
+                         Style="{StaticResource MaterialDesignCircularProgressBar}" />
         </StackPanel>
     </Grid>
 </UserControl>

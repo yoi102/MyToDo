@@ -1,16 +1,12 @@
 ﻿// Copyright (c) Arch team. All rights reserved.
 
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Transactions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using System.Data;
+using System.Text.RegularExpressions;
+using System.Transactions;
 
 namespace MyToDo.Api.Context.UnitOfWork
 {

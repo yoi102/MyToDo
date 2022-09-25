@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Arch team. All rights reserved.
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace MyToDo.Api.Context.UnitOfWork
 {

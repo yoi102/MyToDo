@@ -35,7 +35,6 @@
                      AcceptsReturn="True"
                      TextWrapping="Wrap"
                      DockPanel.Dock="Top" />
-
         </DockPanel>
 
         <StackPanel Grid.Row="2"
@@ -46,11 +45,8 @@
                     Margin="0 0 10 0"
                     Command="{Binding CancelCommand}"
                     Style="{StaticResource MaterialDesignFlatDarkBgButton}" />
-            <Button Content="确定" 
-                    Command="{Binding SaveCommand}"
-                    />
-
+            <Button Content="确定"
+                    Command="{Binding SaveCommand}" />
         </StackPanel>
-
     </Grid>
 </UserControl>

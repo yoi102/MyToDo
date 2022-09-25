@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyToDo.Shared.Dtos
+﻿namespace MyToDo.Shared.Dtos
 {
     /// <summary>
     /// 待办事项数据实体

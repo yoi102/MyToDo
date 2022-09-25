@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Management;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Management;
 
 namespace MyToDo.Shared.Models
 {
@@ -75,7 +69,7 @@ namespace MyToDo.Shared.Models
         {
             try
             {
-                var s =new ManagementClass();
+                var s = new ManagementClass();
 
 
                 string disk = Directory.GetDirectoryRoot(Directory.GetCurrentDirectory());
@@ -112,7 +106,7 @@ namespace MyToDo.Shared.Models
             }
         }
 
- 
+
 
 
 

@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyToDo.Api.Context;
-using MyToDo.Api.Context.UnitOfWork;
 using MyToDo.Api.Service;
 using MyToDo.Shared.Dtos;
 using MyToDo.Shared.Parameters;
@@ -33,7 +31,7 @@ namespace MyToDo.Api.Controllers
         {
 
             return await service.GetAllAsync();
-        }  
+        }
         [HttpGet]
         public async Task<ApiResponse> GetSearch([FromQuery] QueryParameter param)
         {
@@ -45,13 +43,13 @@ namespace MyToDo.Api.Controllers
         {
 
             return await service.AddAsync(model);
-        }  
+        }
         [HttpPost]
         public async Task<ApiResponse> Update([FromBody] MemoDto model)
         {
 
             return await service.UpdateAsync(model);
-        } 
+        }
         [HttpDelete]
         public async Task<ApiResponse> Delete(int id)
         {

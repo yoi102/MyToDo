@@ -3,9 +3,6 @@ using MyToDo.Common.Events;
 using Prism.Events;
 using Prism.Services.Dialogs;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MyToDo.Extensions
@@ -22,7 +19,6 @@ namespace MyToDo.Extensions
         /// <returns></returns>
         public static async Task<IDialogResult> Question(this IDialogHostService dialogHost, string title, string content, string dialogHostName = "Root")
         {
-
             DialogParameters dialogParameters = new DialogParameters();
 
             dialogParameters.Add("Title", title);
@@ -32,9 +28,6 @@ namespace MyToDo.Extensions
             return dialogResult;
         }
 
-
-
-
         /// <summary>
         /// 推送等待消息
         /// </summary>
@@ -42,13 +35,8 @@ namespace MyToDo.Extensions
         /// <param name="model"></param>
         public static void UpdataLoading(this IEventAggregator aggregator, UpdateModel model)
         {
-
             aggregator.GetEvent<UpdateLoadingEvent>().Publish(model);
-
-
-
         }
-
 
         /// <summary>
         /// 注册等待消息
@@ -57,12 +45,9 @@ namespace MyToDo.Extensions
         /// <param name="action"></param>
         public static void Register(this IEventAggregator aggregator, Action<UpdateModel> action)
         {
-
             aggregator.GetEvent<UpdateLoadingEvent>().Subscribe(action);
-
-
-
         }
+
         /// <summary>
         /// 注册提示消息事件
         /// </summary>
@@ -70,13 +55,13 @@ namespace MyToDo.Extensions
         /// <param name="action"></param>
         public static void RegisterMessage(this IEventAggregator aggregator, Action<MessageModel> action, string filterName = "Main")
         {
-
             aggregator.GetEvent<MessageEvent>().Subscribe(action,
                 ThreadOption.PublisherThread, true, (m) =>
                 {
                     return m.Filter.Equals(filterName);
                 });
         }
+
         /// <summary>
         /// 发送提示消息
         /// </summary>
@@ -84,20 +69,11 @@ namespace MyToDo.Extensions
         /// <param name="message"></param>
         public static void SendMessage(this IEventAggregator aggregator, string message, string filterName = "Main")
         {
-
             aggregator.GetEvent<MessageEvent>().Publish(new MessageModel()
             {
                 Filter = filterName,
                 Message = message,
             });
         }
-
-
-
-
-
-
-
-
     }
 }

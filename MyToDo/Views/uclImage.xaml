@@ -74,12 +74,8 @@
                                Foreground="White" />
                     <TextBlock Name="Path_B"
                                Foreground="White" />
-
                 </StackPanel>
-
             </Grid>
-
         </Border>
-
     </Grid>
 </UserControl>

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MyToDo.Shared.Extensions
 {
@@ -14,7 +10,7 @@ namespace MyToDo.Shared.Extensions
         {
             if (string.IsNullOrEmpty(data))
             {
-                throw new  ArgumentNullException(nameof(data));
+                throw new ArgumentNullException(nameof(data));
             }
 
             var hash = MD5.Create().ComputeHash(Encoding.Default.GetBytes(data));

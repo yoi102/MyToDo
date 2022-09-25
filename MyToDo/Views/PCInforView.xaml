@@ -11,10 +11,10 @@
              d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-       
+
             <Button Content="test"
                     Command="{Binding TestCommand}" />
             <Grid Grid.Row="1">
@@ -27,15 +27,12 @@
                     <TextBox Text="{Binding SysContent}"
                              IsReadOnly="true"
                              TextWrapping="Wrap" />
-
                 </ScrollViewer>
                 <ScrollViewer Grid.Column="1">
-                    <TextBox Text="{Binding Content}"
+                <TextBox Text="{Binding Test}"
                              IsReadOnly="true"
                              TextWrapping="Wrap" />
-
                 </ScrollViewer>
-
             </Grid>
     </Grid>
 </UserControl>

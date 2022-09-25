@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using MyToDo.Shared.Dtos;
 using MyToDo.Api.Context;
 using MyToDo.Api.Context.UnitOfWork;
+using MyToDo.Shared.Dtos;
 using MyToDo.Shared.Parameters;
 
 namespace MyToDo.Api.Service
@@ -14,7 +14,7 @@ namespace MyToDo.Api.Service
         private readonly IUnitOfWork work;
         private readonly IMapper mapper;
 
-        public MemoService(IUnitOfWork work,IMapper mapper)
+        public MemoService(IUnitOfWork work, IMapper mapper)
         {
             this.work = work;
             this.mapper = mapper;
@@ -56,7 +56,7 @@ namespace MyToDo.Api.Service
             }
         }
 
-    
+
         public async Task<ApiResponse> GetAllAsync()
         {
             try
@@ -86,7 +86,7 @@ namespace MyToDo.Api.Service
             {
                 var repository = work.GetRepository<Memo>();
                 var todos = await repository.GetAllAsync(predicate:
-                   x => string.IsNullOrWhiteSpace(parameter.Search) || x.Title.Contains(parameter.Search)|| x.Content.Contains(parameter.Search),
+                   x => string.IsNullOrWhiteSpace(parameter.Search) || x.Title.Contains(parameter.Search) || x.Content.Contains(parameter.Search),
                    orderBy: source => source.OrderByDescending(t => t.CreateDate));
 
                 return new ApiResponse(true, todos);
