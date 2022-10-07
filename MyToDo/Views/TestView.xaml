@@ -10,11 +10,11 @@
              d:DesignWidth="800">
     <Grid>
         <!--形状放在InkCanvas上？-->
-        <InkCanvas Panel.ZIndex="1"
-                   Background="Transparent" />
+        <!--<InkCanvas Panel.ZIndex="1"
+                   Background="Transparent" Strokes="{Binding}"/>
         <Image Source="/Images/1.jpg" />
-
-        <!--<Grid>
+        <Canvas ></Canvas>-->
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -28,6 +28,6 @@
 
             <TextBlock Grid.Row="1"  Text="{Binding MyProperty}"
                        FontSize="22" />
-        </Grid>-->
+        </Grid>
     </Grid>
 </UserControl>

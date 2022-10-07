@@ -1,5 +1,6 @@
 ﻿using MaterialDesignThemes.Wpf;
 using MyToDo.Common;
+using MyToDo.Service;
 using MyToDo.Shared.Dtos;
 using Prism.Commands;
 using Prism.Services.Dialogs;
@@ -12,6 +13,11 @@ namespace MyToDo.ViewModels.Dialogs
         {
             SaveCommand = new DelegateCommand(Save);
             CancelCommand = new DelegateCommand(Cancel);
+
+            int ss = 22;
+
+
+
         }
 
         public string DialogHostName { get; set; }
@@ -19,6 +25,7 @@ namespace MyToDo.ViewModels.Dialogs
         public DelegateCommand CancelCommand { get; set; }
 
         private MemoDto _Model;
+        private readonly ITestService testService;
 
         public MemoDto Model
         {
