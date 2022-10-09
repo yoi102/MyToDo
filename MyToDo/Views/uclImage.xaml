@@ -59,17 +59,20 @@
                     <TextBlock Name="Path_Y"
                                Foreground="White" />
 
-                    <TextBlock Text=" R:"
+                    <TextBlock Name="Text_R"
+                               Text=" R:"
                                Margin="10 0 0 0"
                                Foreground="White" />
                     <TextBlock Name="Path_R"
                                Foreground="White" />
                     <TextBlock Text=" G:"
+                               Name="Text_G"
                                Margin="10 0 0 0"
                                Foreground="White" />
                     <TextBlock Name="Path_G"
                                Foreground="White" />
                     <TextBlock Text=" B:"
+                               Name="Text_B"
                                Margin="10 0 0 0"
                                Foreground="White" />
                     <TextBlock Name="Path_B"

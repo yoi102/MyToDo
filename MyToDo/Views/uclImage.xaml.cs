@@ -25,24 +25,62 @@ namespace MyToDo.Views
         private byte[,] _ImageDatab;
         private Point _MiddleButtonClickedPosition;//记录中键点击的位置。。。。。中间拖拉移动
 
-        private BitmapSource _ImageSource;
-
-        public BitmapSource ImageSource
+        public ImageSource ImageSource
         {
-            get { return (BitmapSource)GetValue(ImageSourceProperty); }
+            get { return (ImageSource)GetValue(ImageSourceProperty); }
             set { SetValue(ImageSourceProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for ImageSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ImageSourceProperty =
             DependencyProperty.Register("ImageSource",
-                typeof(BitmapSource), typeof(uclImage),
+                typeof(ImageSource), typeof(uclImage),
                 new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure,
                     new PropertyChangedCallback(OnCurrentReadingChanged)));
 
         private static void OnCurrentReadingChanged(DependencyObject depObj, DependencyPropertyChangedEventArgs e)
         {
+
+            var uclImage = depObj as uclImage;
+            if (uclImage != null)
+            {
+
+                uclImage.ImageSource = e.NewValue as ImageSource;
+                uclImage.GetImageSourceData();
+            }
         }
+
+        private void GetImageSourceData()
+        {
+
+            var image = ImageSource as BitmapSource;
+            if (image != null)
+            {
+                using (Mat mat = image.ToMat())
+                {
+                    if (mat.Channels() == 3)
+                    {
+                        mat.GetRectangularArray<Vec3b>(out Vec3b[,] vec3Ds);
+                        _ImageData3b = vec3Ds;
+                        _ImageDatab = null;
+                        Text_R.Text = "R: ";
+                        Text_B.Text = "B: ";
+                        Text_G.Text = "G: ";
+                    }
+                    else
+                    {
+                        mat.GetRectangularArray<byte>(out byte[,] vecDs);
+                        _ImageDatab = vecDs;
+                        _ImageData3b = null;
+                        Text_R.Text = Text_G.Text = Text_B.Text = "Gray:";
+
+                    }
+                }
+            }
+
+        }
+
+
 
         private void Image_MouseMove(object sender, MouseEventArgs e)
         {
@@ -89,21 +127,7 @@ namespace MyToDo.Views
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            using (Mat mat = ImageSource.ToMat())
-            {
-                if (mat.Channels() == 3)
-                {
-                    mat.GetRectangularArray<Vec3b>(out Vec3b[,] vec3Ds);
-                    _ImageData3b = vec3Ds;
-                    _ImageDatab = null;
-                }
-                else
-                {
-                    mat.GetRectangularArray<byte>(out byte[,] vecDs);
-                    _ImageDatab = vecDs;
-                    _ImageData3b = null;
-                }
-            }
+         
         }
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
