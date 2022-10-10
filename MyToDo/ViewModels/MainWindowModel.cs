@@ -4,6 +4,7 @@ using MyToDo.Extensions;
 using Prism.Commands;
 using Prism.Ioc;
 using Prism.Regions;
+using System;
 
 namespace MyToDo.ViewModels
 {
@@ -14,6 +15,8 @@ namespace MyToDo.ViewModels
             MenuBars = new ObservableCollection<MenuBar>();
             this.regionManager = regionManager;
             this.container = container;
+
+
         }
 
         private ObservableCollection<MenuBar> _MenuBars;

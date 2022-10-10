@@ -39,6 +39,7 @@ builder.Services.AddSwaggerGen(options =>
         });
     });
 });
+//在MyToDoContext中也可以设置
 builder.Services.AddDbContext<MyToDoContext>(options =>
 {
 
