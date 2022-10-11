@@ -25,7 +25,6 @@ namespace MyToDo.ViewModels.Dialogs
         public DelegateCommand CancelCommand { get; set; }
 
         private MemoDto _Model;
-        private readonly ITestService testService;
 
         public MemoDto Model
         {

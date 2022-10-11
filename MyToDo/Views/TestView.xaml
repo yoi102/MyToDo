@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewmodels="clr-namespace:MyToDo.ViewModels"
+             xmlns:local="clr-namespace:MyToDo.Views"
              d:DataContext="{d:DesignInstance Type=viewmodels:TestViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="450"
@@ -26,8 +27,10 @@
                         Content="Test2" />
             </StackPanel>
 
-            <TextBlock Grid.Row="1"  Text="{Binding MyProperty}"
-                       FontSize="22" />
+            <!--<TextBlock Grid.Row="1"  Text="{Binding MyProperty}"
+                       FontSize="22" />-->
+            <!--<local:uclDynamicChart Grid.Row="1"></local:uclDynamicChart>-->
+            <local:uclOxyChart Grid.Row="1"></local:uclOxyChart>
         </Grid>
     </Grid>
 </UserControl>

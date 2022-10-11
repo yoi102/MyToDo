@@ -65,7 +65,6 @@ var autoMapperConfig = new MapperConfiguration(config =>
 
 });
 
-
 builder.Services.AddSingleton(autoMapperConfig.CreateMapper());
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>

@@ -85,7 +85,6 @@ namespace MyToDo
             containerRegistry.Register<IMemoService, MemoService>();//有三种注册方式
             containerRegistry.Register<ILoginService, LoginService>();//每一次解析都会创建一个实例，仅限当前实例，同一个实例相当于同一个请求
             containerRegistry.RegisterScoped<IHardwareInfo, HardwareInfo>();//在同一个Scope内只初始化一个实例，多个view中同一个范围？也跨对话框,
-            containerRegistry.RegisterSingleton<ITestService, TestService>();//单例
             containerRegistry.GetContainer().Register<HttpRestClient>(made: Parameters.Of.Type<string>(serviceKey: "webUrl"));
 
             containerRegistry.GetContainer().RegisterInstance(@"https://localhost:7211/", serviceKey: "webUrl");

@@ -7,10 +7,9 @@ namespace MyToDo.ViewModels
 {
     public class PCInforViewModel : BindableBase
     {
-        public PCInforViewModel(ITestService testService)
+        public PCInforViewModel()
         {
             Task.Run(() => GetInfor());
-            this.testService = testService;
         }
 
         private void GetInfor()
@@ -101,7 +100,6 @@ namespace MyToDo.ViewModels
             }
         }
 
-        private readonly ITestService testService;
 
         private int _Test;
 
@@ -131,9 +129,7 @@ namespace MyToDo.ViewModels
         {
             Task.Run(() => GetInfor());
 
-            testService.MyProperty += 1;
-
-            Test = testService.MyProperty;
+        
         });
     }
 }
