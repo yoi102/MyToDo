@@ -47,9 +47,4 @@ Prism
 
   
 ## 声明
-  此存储库为学习 “HenJigg” 而制作的练习作品，使用的程序包为此时刻的最新版本，对比原版有做一些优化和修改。；如有兴趣，可点击下方链接观看原视频学习。
-  
-  视频连接：https://www.bilibili.com/video/BV1nY411a7T8?vd_source=59db7e89fb76627915a3078680170d85
-  
-  视频项目源代码地址: https://github.com/HenJigg/MyToDoApp
-
+  此存储库为学习 “HenJigg” 而制作的练习作品，使用的程序包为此时刻的最新版本，对比原版有做一些优化和修改。
